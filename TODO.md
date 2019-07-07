@@ -1,0 +1,2 @@
+- Consolidate all messages in single log
+- One log per device
