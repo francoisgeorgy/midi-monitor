@@ -6,9 +6,18 @@
   "license": "GPL-3.0-or-later",
   "private": true,
   "dependencies": {
+    "mobx": "^5.11.0",
+    "mobx-react": "^6.1.1",
+    "parse-midi": "^1.0.8",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "react-switch": "^5.0.0",
+    "reactjs-popup": "^1.4.1",
+    "storejs": "^1.0.25",
+    "tonal-note": "^2.2.2",
+    "webmidi": "^2.3.3"
   },
   "scripts": {
     "start": "react-scripts start",

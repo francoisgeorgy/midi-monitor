@@ -1,0 +1,64 @@
+
+.ports-grid {
+    display: flex;
+    flex-direction: row;
+}
+
+/*
+.port {
+    border: 1px solid #999;
+    border-radius: 5px;
+    margin-right: 10px;
+    padding: 5px 4px 4px 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #b8b8b8;
+    font-size: 0.85rem;
+}
+*/
+.port {
+    border: 1px solid #999;
+    /*border-radius: 5px;*/
+    margin-right: 10px;
+    /*padding: 5px 2px 2px 4px;*/
+    padding: 4px 2px 2px 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /*background-color: #b8b8b8;*/
+    background-color: #e0e0e0;
+    font-size: 12px;
+}
+
+.port > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.port-name {
+    font-weight: 500;
+    /*margin-right: 4px;*/
+}
+
+/*.port-switch {*/
+/*    margin-left: 4px;*/
+/*}*/
+
+/*.react-switch {*/
+/*    vertical-align: middle;*/
+/*}*/
+
+/*.react-switch-bg {*/
+/*    background-color: rgb(136, 136, 136)!important;*/
+/*}*/
+
+.port.enabled {
+    background-color: yellow;
+    border-color: #c5c500;
+}
+
+/*.device-ok .react-switch-bg {*/
+/*    background-color: green!important;*/
+/*}*/

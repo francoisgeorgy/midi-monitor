@@ -1,0 +1,125 @@
+
+.pre-header {
+    margin-bottom: 2px;
+    font-size: 12px;
+    color: var(--text-light);
+    text-align: right;
+}
+.pre-header a {
+    text-decoration: none;
+}
+
+.header {
+    /*border-top: 2px solid #1e85be;*/
+    border-top: 1px solid #000;
+    margin-bottom: 1px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /*background-color: #3a3a3a;*/
+    /*background-color: #707070;*/
+    /*background-color: #eaeaea;*/
+    /*padding: 10px 10px;*/
+    padding: 10px 0 5px 0;
+    /*
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 10px 10px 10px;
+    border-left: 1px solid var(--border-dark-light);
+    border-right: 1px solid var(--border-dark-dark);
+    */
+}
+
+.header-app-name {
+    font-family: "Roboto Condensed", "Roboto", Helvetica, Arial, sans-serif;
+    color: #9d9d9d;
+    text-align: right;
+    cursor: pointer;
+    font-size: 20px;
+    /*
+    color: #c7c7c7;
+    text-align: right;
+    cursor: pointer;
+    */
+}
+
+.header > button {
+    margin-right: 20px;
+}
+
+.header-link {
+    padding: 14px 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.header-link:hover {
+    background-color: #000;
+}
+
+.header-link div {
+    padding: 0 16px;
+    margin: 0;
+    text-decoration: none;
+    color: #fff;
+}
+
+.header-link.active {
+    background-color: #0030ff;
+}
+
+.header-link.active a {
+    color: #fff;
+}
+
+.spacer {
+    flex-grow: 10;
+}
+
+.popup-content {
+    width: 30%;
+}
+
+.about {
+    padding: 10px 30px;
+    text-align: center;
+    color: #555;
+}
+
+.about a {
+    text-decoration: none;
+}
+
+.about > div {
+    margin-top: 20px;
+}
+
+.about-title {
+    /*margin-bottom: 20px;*/
+    /*font-weight: bold;*/
+    font-size: 2rem;
+}
+
+.about-deps {
+    /*margin-top: 20px;*/
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    padding: 10px;
+}
+
+.about-deps > div {
+    margin-bottom: 10px;
+}
+
+.about-deps > a {
+    margin-right: 15px;
+}
+
+.about-support {
+    /*margin-top: 10px;*/
+    /*border-top: 1px solid #aaa;*/
+    /*padding: 10px;*/
+    margin-bottom: 20px;
+}

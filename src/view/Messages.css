@@ -1,0 +1,62 @@
+
+/*.midi-console .content-wrapper {*/
+/*    overflow-y: scroll;*/
+/*    max-height: calc(100vh - 50px - 31px);*/
+/*}*/
+
+.midi-console .panel-title button {
+    margin-left: 20px;
+}
+
+.midi-console.panel-wrapper {
+    border-bottom: none;
+}
+
+.midi-console table {
+    border-collapse: collapse;
+    /*font-size: 14px;*/
+}
+
+.midi-console th,
+.midi-console td {
+    border: 1px solid #999;
+    padding: 2px 8px;
+    vertical-align: top;
+}
+
+.midi-console .data-txt {
+    text-transform: lowercase;
+    white-space: nowrap;
+}
+
+.midi-console .data {
+    font-family: monospace;
+    font-size: 12px;
+    word-spacing: -3px;
+}
+
+.console-positions {
+    flex-grow: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.console-positions > div {
+    cursor: pointer;
+}
+
+.console-positions > div.on svg {
+    fill: #000;
+}
+
+.midi-console .instruction {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+span.toggle_full {
+    cursor: pointer;
+    color: blue;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+}

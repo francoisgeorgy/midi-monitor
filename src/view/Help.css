@@ -1,0 +1,102 @@
+body.popup {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.4;
+    color: #000;
+    margin: 20px 40px;
+    /*margin: 0 40px;*/
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #fff;
+}
+
+/*
+.popup #root {
+    background-color: white;
+}
+*/
+
+
+.help {
+    /*padding: 10px;*/
+    /*color: #333;*/
+    /*font-size: 14px;*/
+    /*overflow-y: scroll;*/
+    /*line-height: 135%;*/
+}
+
+.help-wrapper {
+    margin-bottom: 40px;
+}
+
+.help-wrapper .panel-title button {
+    margin-left: 20px;
+}
+
+.help-top .help {
+    max-height: 40vh;
+    overflow-y: scroll;
+}
+
+.help-left .help,
+.help-right .help {
+    max-height: calc(100vh - 50px - 31px);
+    overflow-y: scroll;
+}
+
+.help h2 {
+    font-size: 1.25rem;
+    margin: 15px 0 10px 0;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #999;
+}
+
+.help h3 {
+    font-size: 1rem;
+    margin: 10px 0 10px 0;
+}
+
+.help ol,
+.help ul {
+    margin: 0;
+}
+
+.help li {
+    margin-bottom: 4px;
+}
+
+.help > div {
+    margin-bottom: 10px;
+}
+
+ol.space-above,
+ul.space-above {
+    margin-top: 5px;
+}
+
+li > div {
+    margin-bottom: 5px;
+}
+
+.help .msg-types-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: start;
+    justify-items: start;
+    align-items: start;
+    grid-column-gap: 10px;
+    grid-row-gap: 5px;
+}
+
+.help .msg-types-grid > div {
+}
+
+.help .msg-type-name {
+    font-weight: bold;
+}
+
+.help .msg-type-description {
+}
+

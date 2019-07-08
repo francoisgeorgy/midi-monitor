@@ -1,33 +1,148 @@
-.App {
-  text-align: center;
+/*html, body {*/
+/*    height: 100%;*/
+/*    margin: 0;*/
+/*}*/
+
+.app-wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.pre-header {
+    background: limegreen;
+}
+.header {
+    background: yellow;
+}
+.messages {
+    flex-grow: 2;
+    overflow-y: scroll;
+    background: pink;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+
+/*
+.panel {
+    margin: 0 5px;
+    border-bottom: 1px solid var(--border-dark);
+    background-color: #efefef;
+    !*background-color: white;*!
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.panel-borders {
+    border-left: 1px solid var(--border-light);
+    border-right: 1px solid var(--border-dark);
 }
 
-.App-link {
-  color: #61dafb;
+.panel-app {
+    flex-grow: 2;
+}
+*/
+
+/*
+.wrapper-app-console.midi-left .panel-console,
+.wrapper-app-console.midi-right .panel-console {
+    width: 30%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.wrapper-app-help.help-left .panel-help,
+.wrapper-app-help.help-right .panel-help {
+    width: 33%;
 }
+
+.wrapper-app-console.midi-bottom .midi-console {
+    padding-bottom: 10px;
+}
+*/
+
+
+.instruction {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.left-space {
+    margin-left: 5px;
+}
+
+.left-space-double {
+    margin-left: 10px;
+}
+
+.warning {
+    font-size: 12px;
+    color: red;
+}
+
+label {
+    color: var(--text-light);
+    padding: 1px 3px 1px 2px;
+}
+
+label.checked {
+    color: #000;
+    /*background-color: #d2d2d2;*/
+    border-radius: 4px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin-bottom: 5px;
+}
+
+h3, h4 {
+    margin: 0.5rem 0;
+}
+
+
+.content-wrapper {
+    /*margin: 0 10px;*/
+    margin-top: 5px;
+}
+
+.show-hide {
+    float: right;
+    font-size: 14px;
+    margin-top: 0.5em;
+}
+
+.warn {
+    color: black;
+    background-color: darkorange;
+    padding: 4px;
+
+}
+
+select:not([multiple]) {
+    font-size: 12px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: white;
+    background-position: right 50%;
+    background-repeat: no-repeat;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAMCAYAAABSgIzaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDZFNDEwNjlGNzFEMTFFMkJEQ0VDRTM1N0RCMzMyMkIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDZFNDEwNkFGNzFEMTFFMkJEQ0VDRTM1N0RCMzMyMkIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0NkU0MTA2N0Y3MUQxMUUyQkRDRUNFMzU3REIzMzIyQiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0NkU0MTA2OEY3MUQxMUUyQkRDRUNFMzU3REIzMzIyQiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PuGsgwQAAAA5SURBVHjaYvz//z8DOYCJgUxAf42MQIzTk0D/M+KzkRGPoQSdykiKJrBGpOhgJFYTWNEIiEeAAAMAzNENEOH+do8AAAAASUVORK5CYII=);
+    /*padding: 0.25rem 1.5rem 0.25rem 0.5rem;*/
+    padding: 2px 1.5rem 2px 4px;
+    /*padding: .5em;*/
+    /*padding-right: 1.5em*/
+    border-radius: 0;
+}
+
+/*
+select {
+    font-size: 14px;
+}
+*/
+
+input[type="checkbox"],
+input[type="radio"] {
+    margin-right: 4px;
+}
+
+input[type="text"] {
+    padding: 0 2px;
+}
+

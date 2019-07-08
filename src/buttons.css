@@ -1,0 +1,128 @@
+
+/* based on: https://getbootstrap.com/docs/4.0/components/buttons/ */
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 5px 10px;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: filter 150ms;
+}
+
+.btn:hover {
+    filter: brightness(86%);
+}
+
+.btn:disabled {
+    background-color: #e0e0e0!important;
+    color: #999!important;
+    border-color: #c0c0c0!important;
+}
+
+.btn:disabled:hover {
+    filter: none;
+}
+
+.btn-large {
+    line-height: 1.5;
+    border-radius: .3rem;
+}
+
+.btn-small {
+    padding: 0 5px 1px 5px;
+    border-radius: .25rem;
+    font-size: 13px;
+}
+
+.btn-x-small {
+    padding: 1px 7px 2px 7px;
+    border-radius: .25rem;
+    font-size: 13px;
+}
+
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+[type=reset], [type=submit], button, html [type=button] {
+    -webkit-appearance: button;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+.btn-secondary {
+    color: #fff;
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn-success {
+    color: #fff;
+    background-color: var(--green);
+    border-color: var(--green);
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: var(--red);
+    border-color: var(--red);
+}
+
+.btn-warning {
+    color: #212529;
+    background-color: var(--yellow);
+    border-color: var(--yellow);
+}
+
+.btn-info {
+    color: #fff;
+    background-color: var(--cyan);
+    border-color: var(--cyan);
+}
+
+.btn-light {
+    color: #212529;
+    background-color: var(--light);
+    border-color: var(--light);
+}
+
+.btn-dark {
+    color: #fff;
+    background-color: var(--dark);
+    border-color: var(--dark);
+}
+
+.btn-white-border {
+    border-color: #f4f4f4;
+}
+
+button, select {
+    text-transform: none;
+}
+
+button, input {
+    overflow: visible;
+}
+
+button, input, optgroup, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+button {
+    border-radius: 0;
+}
