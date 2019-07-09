@@ -31,12 +31,12 @@ class Header extends React.Component {
 
                     <div className="spacer"> </div>
 
-                    <Popup trigger={<div className="header-app-name">MIDI BABY editor {process.env.REACT_APP_VERSION}</div>} modal closeOnDocumentClick>
+                    <Popup trigger={<div className="header-app-name">MIDI Monitor {process.env.REACT_APP_VERSION}</div>} modal closeOnDocumentClick>
                         <div className="about">
-                            <div className="about-title">MIDI BABY editor {process.env.REACT_APP_VERSION}</div>
+                            <div className="about-title">MIDI Monitor {process.env.REACT_APP_VERSION}</div>
                             <div>Coding by <a href="https://sysex.io/" target="_blank" rel="noopener noreferrer">Fran&ccedil;ois Georgy</a></div>
                             <div className="about-deps">
-                                <div>This editor has been made possible thanks to the following libraries:</div>
+                                <div>This application has been made possible thanks to the following libraries:</div>
                                 <a href="https://github.com/immerjs/immer" target="_blank" rel="noopener noreferrer">immer</a>
                                 <a href="https://mobx.js.org/" target="_blank" rel="noopener noreferrer">MobX</a>
                                 <a href="https://github.com/mobxjs/mobx-react" target="_blank" rel="noopener noreferrer">mobx-react</a>
@@ -48,9 +48,6 @@ class Header extends React.Component {
                                 <br />
                                 <a href="https://github.com/tonaljs/tonal" target="_blank" rel="noopener noreferrer">Tonal</a>
                                 <a href="https://github.com/djipco/webmidi" target="_blank" rel="noopener noreferrer">WebMidi.js</a>
-                            </div>
-                            <div className="about-support">
-                                <a href="https://www.disasterareaamps.com/files" target="_blank" rel="noopener noreferrer">MIDI Baby support page</a>
                             </div>
                         </div>
                     </Popup>

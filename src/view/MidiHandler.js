@@ -100,8 +100,8 @@ class MidiHandler extends React.Component {
         }
 
         return (
-            <div className="subheader TODO-REMOVE-ME-panel-borders">
-                <div className="subheader-left">
+            <div className="ports Xsubheader TODO-REMOVE-ME-panel-borders">
+                <div className="Xsubheader-left">
                     {error_message &&
                     <div className="error"><div>{error_message}</div></div>}
                     <Midi portsRenderer={(groupedPorts, togglePortHandler) => <PortsGrid

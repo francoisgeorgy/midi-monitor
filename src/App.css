@@ -3,21 +3,30 @@
 /*    margin: 0;*/
 /*}*/
 
+
+.pre-header {
+    /*background: limegreen;*/
+}
+.header {
+    /*background: yellow;*/
+}
+
 .app-wrapper {
     height: 100vh;
     display: flex;
     flex-direction: column;
 }
-.pre-header {
-    background: limegreen;
+
+.content-wrapper {
+    display: flex;
+    flex-direction: row;
 }
-.header {
-    background: yellow;
-}
+
 .messages {
     flex-grow: 2;
-    overflow-y: scroll;
-    background: pink;
+    /*overflow-y: scroll;*/
+    overflow-y: hidden;
+    /*background: pink;*/
 }
 
 
@@ -98,10 +107,6 @@ h3, h4 {
 }
 
 
-.content-wrapper {
-    /*margin: 0 10px;*/
-    margin-top: 5px;
-}
 
 .show-hide {
     float: right;

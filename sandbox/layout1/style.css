@@ -1,0 +1,96 @@
+body {
+    margin: 0;
+}
+
+body,
+html,
+.container {
+    height: 100%;
+    max-height: 100%;
+}
+
+.top {
+    background-color: #999;
+}
+
+.footer {
+    height: 30px;
+}
+
+.left {
+    background-color: #aaa;
+    min-width: 200px;
+}
+/*
+.left {
+    background-color: #aaa;
+    min-width: 50px;
+    overflow: hidden!important;
+}
+*/
+
+.right {
+    background-color: #ccc;
+    /*flex: 100;*/
+}
+
+.top,
+.content div {
+    /*   padding: 20px; */
+}
+
+.container,
+.content {
+    display: flex;
+}
+
+.container {
+    flex-direction: column;
+}
+
+.content {
+    overflow: hidden;
+    align-content: stretch;
+    flex: 2;
+}
+
+.content,
+.content div {
+}
+
+.content div {
+    overflow: auto;
+}
+
+
+.right {
+    overflow-y: auto;
+    height: 100%;
+}
+
+.right table {
+    width: 100%;
+    table-layout: fixed;
+    border: none;
+    border-collapse: collapse;
+
+}
+
+.right table th {
+    text-align: left;
+    top: 0;
+    position: sticky;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    padding: 2px 8px;
+    vertical-align: top;
+    background-color: #d0d0d0;
+}
+
+tr:nth-child(even) {
+    background: #fafafa
+}
+
+tr:nth-child(odd) {
+    background: #f0f0f0
+}

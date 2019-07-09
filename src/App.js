@@ -42,8 +42,10 @@ class App extends Component {
             <Provider appState={appState}>
                 <div className="app-wrapper">
                     <Header />
-                    <MidiHandler />
-                    <Messages />
+                    <div className="content-wrapper">
+                        <MidiHandler />
+                        <Messages />
+                    </div>
                 </div>
             </Provider>
         );

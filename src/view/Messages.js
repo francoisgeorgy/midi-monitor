@@ -35,11 +35,13 @@ class Messages extends React.Component {
 
         return (
             <div className="messages midi-console">
+{/*
                 <div className="panel-title">
                     MIDI&nbsp;monitor
                     <button type="button" className="btn btn-light btn-small" onClick={this.clear}>Clear messages</button>
                 </div>
-                <div className="content-wrapper">
+*/}
+                <div className="outer Xcontent-wrapper">
                     {/*<div className="instruction">Sent and received MIDI messages. Use it to test your configuration.</div>*/}
                     <table>
                         <tbody>
