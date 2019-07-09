@@ -1,6 +1,6 @@
 
 .pre-header {
-    margin-bottom: 2px;
+    /*margin-bottom: 2px;*/
     font-size: 12px;
     color: var(--text-light);
     text-align: right;
@@ -11,8 +11,8 @@
 
 .header {
     /*border-top: 2px solid #1e85be;*/
-    border-top: 1px solid #000;
-    margin-bottom: 1px;
+    /*border-top: 1px solid #000;*/
+    /*margin-bottom: 1px;*/
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -20,7 +20,7 @@
     /*background-color: #707070;*/
     /*background-color: #eaeaea;*/
     /*padding: 10px 10px;*/
-    padding: 10px 0 5px 0;
+    padding: 5px 0 5px 0;
     /*
     display: flex;
     flex-direction: row;

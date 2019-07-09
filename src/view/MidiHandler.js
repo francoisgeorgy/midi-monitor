@@ -100,21 +100,20 @@ class MidiHandler extends React.Component {
         }
 
         return (
-            <div className="ports Xsubheader TODO-REMOVE-ME-panel-borders">
-                <div className="Xsubheader-left">
-                    {error_message &&
-                    <div className="error"><div>{error_message}</div></div>}
-                    <Midi portsRenderer={(groupedPorts, togglePortHandler) => <PortsGrid
-                                groupedPorts={groupedPorts}
-                                togglePortHandler={togglePortHandler}
-                                deviceInputPortID={deviceInputPortID}
-                                 />}
-                          messageType={RECEIVE_MSG_TYPES}
-                          onError={this.onMidiError}
-                          onMidiInputEvent={this.handleMidiInputEvent}
-                          onInputConnection={this.onInputConnection}
-                          onInputDisconnection={this.onInputDisconnection} />
-                </div>
+            <div className="Xsubheader-left">
+                {error_message &&
+                <div className="error"><div>{error_message}</div></div>}
+                <Midi portsRenderer={(groupedPorts, togglePortHandler) =>
+                        <PortsGrid
+                            groupedPorts={groupedPorts}
+                            togglePortHandler={togglePortHandler}
+                            deviceInputPortID={deviceInputPortID}
+                        />}
+                    messageType={RECEIVE_MSG_TYPES}
+                    onError={this.onMidiError}
+                    onMidiInputEvent={this.handleMidiInputEvent}
+                    onInputConnection={this.onInputConnection}
+                    onInputDisconnection={this.onInputDisconnection} />
             </div>
         );
     }

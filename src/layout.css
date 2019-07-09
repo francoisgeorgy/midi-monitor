@@ -1,0 +1,78 @@
+
+html,
+body,
+#root {
+    height: 100%;
+    max-height: 100%;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+}
+
+.app {
+    display: flex;
+    align-content: stretch;
+    flex: 2;
+    overflow: hidden;
+    /*background-color: yellow;*/
+}
+
+.app div {
+    overflow: auto;
+}
+
+.top {
+    background-color: #999;
+}
+
+.footer {
+    height: 30px;
+}
+
+.left {
+    min-width: 200px;
+    background-color: #e0e0e0;
+    border-right: 1px solid #ddd;
+}
+/*
+.left {
+    background-color: #aaa;
+    min-width: 50px;
+    overflow: hidden!important;
+}
+*/
+
+.right {
+    /*flex: 100;*/
+    overflow-y: auto;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.right table {
+    width: 100%;
+    table-layout: fixed;
+    border: none;
+    border-collapse: collapse;
+}
+
+.right table th {
+    text-align: left;
+    top: 0;
+    position: sticky;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    padding: 2px 8px;
+    vertical-align: top;
+    background-color: #d0d0d0;
+}
+
+tr:nth-child(even) {
+    background: #fafafa
+}
+
+tr:nth-child(odd) {
+    background: #f0f0f0
+}

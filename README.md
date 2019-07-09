@@ -8,4 +8,5 @@
     - total
     - per port
 - hex / dec
+- download sysex as file
     

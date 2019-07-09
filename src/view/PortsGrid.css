@@ -2,6 +2,7 @@
 .ports-grid {
     /*display: flex;*/
     /*flex-direction: row;*/
+    padding: 5px 10px;
 }
 
 /*
@@ -20,26 +21,34 @@
 .port {
     border: 1px solid #999;
     /*border-radius: 5px;*/
-    margin-right: 10px;
+    /*margin-right: 10px;*/
+    margin: 5px 0;
     /*padding: 5px 2px 2px 4px;*/
-    padding: 4px 2px 2px 4px;
+    padding: 4px 5px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
     /*background-color: #b8b8b8;*/
     background-color: #e0e0e0;
     font-size: 12px;
 }
 
-.port > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/*.port > div {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
 
 .port-name {
-    font-weight: 500;
+    font-weight: 700;
     /*margin-right: 4px;*/
+}
+
+.port-manufacturer {
+}
+
+.port-msgs {
+    text-align: right;
 }
 
 /*.port-switch {*/

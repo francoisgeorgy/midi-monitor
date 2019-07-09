@@ -40,13 +40,23 @@ class App extends Component {
 
         return (
             <Provider appState={appState}>
-                <div className="app-wrapper">
+                <Fragment>
+                    {/*<div className="top">Fixed Top</div>*/}
                     <Header />
+                    <div className="app">
+                        <div className="left">
+                            <MidiHandler />
+                        </div>
+                        <div className="right">
+                            <Messages />
+                        </div>
+{/*
                     <div className="content-wrapper">
-                        <MidiHandler />
                         <Messages />
                     </div>
-                </div>
+*/}
+                    </div>
+                </Fragment>
             </Provider>
         );
     }

@@ -26,8 +26,10 @@ class Header extends React.Component {
                 </div>
                 <div className="header">
 
+{/*
                     <button className="btn btn-large btn-primary" onClick={this.help}
                             title="Open a popup with the some help information.">Help</button>
+*/}
 
                     <div className="spacer"> </div>
 

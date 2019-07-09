@@ -14,18 +14,18 @@ class Messages extends React.Component {
         this.props.appState.messages[index].view_full = !this.props.appState.messages[index].view_full;
     };
 
-    scrollToBottom = () => {
-        if (this.props.consolePosition === 'bottom') return;
-        this.messagesEnd.scrollIntoView();
-    };
+    // scrollToBottom = () => {
+    //     if (this.props.consolePosition === 'bottom') return;
+    //     this.messagesEnd.scrollIntoView();
+    // };
 
-    componentDidMount() {
-        this.scrollToBottom();
-    };
-
-    componentDidUpdate() {
-        this.scrollToBottom();
-    };
+    // componentDidMount() {
+    //     this.scrollToBottom();
+    // };
+    //
+    // componentDidUpdate() {
+    //     this.scrollToBottom();
+    // };
 
     render() {
 
@@ -34,15 +34,6 @@ class Messages extends React.Component {
         const cut_len = consolePosition === 'bottom' ? 48 : 12;
 
         return (
-            <div className="messages midi-console">
-{/*
-                <div className="panel-title">
-                    MIDI&nbsp;monitor
-                    <button type="button" className="btn btn-light btn-small" onClick={this.clear}>Clear messages</button>
-                </div>
-*/}
-                <div className="outer Xcontent-wrapper">
-                    {/*<div className="instruction">Sent and received MIDI messages. Use it to test your configuration.</div>*/}
                     <table>
                         <tbody>
                         <tr>
@@ -84,11 +75,6 @@ class Messages extends React.Component {
                         )}
                         </tbody>
                     </table>
-                    {consolePosition !== 'bottom' &&
-                    <div style={{ float:"left", clear: "both" }} ref={(el) => { this.messagesEnd = el; }}>
-                    </div>}
-                </div>
-            </div>
         );
     }
 }
