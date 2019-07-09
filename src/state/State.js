@@ -32,6 +32,7 @@ class AppState {
         // }
     }
 
+/*
     setMidiOutput(port_id) {
         const changed = port_id !== this.midi.output;   // to force checkDevice with we replace an output by another output
         this.midi.output = port_id;
@@ -42,6 +43,7 @@ class AppState {
         //     this.checkDevice();
         // }
     }
+*/
 
     appendMessageIn(msg) {
         // const M = this.messages_in;
@@ -168,6 +170,7 @@ class AppState {
         this.messages.push(m);    //TODO: push parseMidi() and timestamp
     }
 
+/*
     appendMessageOut(bytes) {
 
         if (this.messages.length >= MIDI_CONSOLE_SIZE) {
@@ -203,6 +206,7 @@ class AppState {
 
         this.messages.push(m);    //TODO: push parseMidi() and timestamp
     }
+*/
 
 }
 

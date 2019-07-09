@@ -11,7 +11,11 @@ const PortsGrid = ({ groupedPorts, togglePortHandler, deviceInputPortID }) => {
                     <div className={`port ${checked ? 'enabled' : ''}`} key={index} onClick={() => togglePortHandler(groupedPorts[name].input.id)}>
                         <div className="port-manufacturer">manufacturer</div>
                         <div className="port-name">{name}</div>
-                        <div className="port-msgs">1234</div>
+                        <div className="port-options">
+                            <div>color</div>
+                            <div>hide</div>
+                            <div className="port-messages">1234</div>
+                        </div>
                         {/* groupedPorts[name].input &&
                         <div className="port-switch">
                             <Switch onChange={() => togglePortHandler(groupedPorts[name].input.id)}

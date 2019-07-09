@@ -27,6 +27,12 @@ class Messages extends React.Component {
     //     this.scrollToBottom();
     // };
 
+    //
+    // Display format:
+    //
+    // # | source | data (hex) | data (dec) | type | channel | decoded | commands (e.g. export sysex)
+    //
+
     render() {
 
         const {consolePosition} = this.props;
@@ -38,29 +44,27 @@ class Messages extends React.Component {
                         <tbody>
                         <tr>
                             {/*<th>timestamp</th>*/}
-                            <th>dir.</th>
+                            {/*<th>dir.</th>*/}
                             <th>source</th>
+                            <th>raw data (hex)</th>
+                            <th>raw data (dec)</th>
                             <th>msg type</th>
                             <th>ch.</th>
                             <th>data1</th>
                             <th>data2</th>
-                            <th>raw data (hex)</th>
                         </tr>
                         {this.props.appState.messages && this.props.appState.messages.map((m, i) =>
                         <tr key={i}>
                             {/*<td>{m.timestamp.toFixed(3)}</td>*/}
-                            <td>{m.direction}</td>
+                            {/*<td>{m.direction}</td>*/}
                             <td>{m.source}</td>
-                            {!m.sysex &&
-                            <Fragment>
-                                <td className="data-txt">{m.type}</td>
-                                <td className="data">{m.channel}</td>
-                                <td className="data">{m.data1}</td>
-                                <td className="data">{m.data2}</td>
-                                <td className="data">{hs(m.data)}</td>
-                            </Fragment>
-                            }
-                            {m.sysex &&
+                            <td className="data">{hs(m.data)}</td>
+                            <td className="data">{hs(m.data)}</td>
+                            <td className="data-txt">{m.type}</td>
+                            <td className="data">{m.channel}</td>
+                            <td className="data">{m.data1}</td>
+                            <td className="data">{m.data2}</td>
+                            {/* m.sysex &&
                             <Fragment>
                                 <td className="data-txt" colSpan={2}>{m.type}</td>
                                 {m.data.length <= cut_len &&
@@ -70,7 +74,7 @@ class Messages extends React.Component {
                                 <td className="data" colSpan={3}>{hs(m.view_full ? m.data : m.data.slice(0, cut_len))} <span className="toggle_full" onClick={() => this.toggleFull(i)}>{m.view_full ? 'less' : 'full'}</span></td>
                                 }
                             </Fragment>
-                            }
+                            */}
                         </tr>
                         )}
                         </tbody>

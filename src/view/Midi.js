@@ -233,10 +233,10 @@ export default class Midi extends Component {
                     code = ERROR_MIDI_NOT_SUPPORTED;
                 } else { // noinspection JSUnresolvedVariable
                     if (!WebMidi.enabled) {
-                                        code = ERROR_MIDI_NOT_ENABLED;
-                                    } else {
-                                        code = ERROR_UNKNOWN;
-                                    }
+                        code = ERROR_MIDI_NOT_ENABLED;
+                    } else {
+                        code = ERROR_UNKNOWN;
+                    }
                 }
                 this.props.onError({code, message: err.message});
             }

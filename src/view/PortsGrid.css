@@ -47,8 +47,14 @@
 .port-manufacturer {
 }
 
-.port-msgs {
+.port-options {
+    /*text-align: right;*/
+    display: flex;
+
+}
+.port-messages {
     text-align: right;
+    flex: 2;
 }
 
 /*.port-switch {*/
