@@ -79,6 +79,9 @@ class MidiHandler extends React.Component {
 
     autoConnectInput = (port) => {
         if (global.dev) console.log(`Midi.autoConnectInput ${port.id} ?`);
+
+        this.connectInput(port);
+
         //FIXME: preferences
         /*
                 const s = loadPreferences();
