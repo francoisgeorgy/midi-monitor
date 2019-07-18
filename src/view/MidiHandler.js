@@ -1,6 +1,5 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-// import Midi, {ERROR_MIDI_NOT_ENABLED, ERROR_MIDI_NOT_SUPPORTED, ERROR_UNKNOWN} from "./Midi";
 import "./MidiHandler.css";
 import {inputById, portById} from "../utils/ports";
 import * as WebMidi from "webmidi";
@@ -27,17 +26,13 @@ class MidiHandler extends React.Component {
     };
 
     handleMidiInputEvent = (e) => {
-
         console.log(e);
-
         if (e.data[0] === 0xF8) {
             // we ignore Timing Clock messages
             return;
         }
-
         // e.data is UInt8Array
         const S = this.props.appState;
-
         S.appendMessageIn(e);
     };
 
@@ -205,40 +200,7 @@ class MidiHandler extends React.Component {
         }
     }
 
-/*
-    ports = () => {
-        let group = {};
-        // noinspection JSUnresolvedVariable
-        for (let port of WebMidi.inputs) {
-            group.push({
-                port,
-                selected: port.id === this.state.input
-                //TODO: other props like "silent", ...
-            });
-        }
-        // noinspection JSUnresolvedVariable
-        // for (let port of WebMidi.outputs) {
-        //     if (!(port.name in group)) {
-        //         group[port.name] = {
-        //             input: null,
-        //             output: null
-        //         };
-        //     }
-        //     group[port.name].output = {
-        //         id: port.id,
-        //         selected: port.id === this.state.output
-        //     }
-        // }
-        return group;
-    };
-*/
-
     render() {
-
-        // const S = this.props.appState;
-
-        // const deviceInputPortID = S.device_ok ? S.midi.input : null;
-        // const deviceOutputPortID = S.device_ok ? S.midi.output : null;
 
         let error_message = null;
         if (this.state.error) {
@@ -261,19 +223,6 @@ class MidiHandler extends React.Component {
                 {error_message &&
                 <div className="error"><div>{error_message}</div></div>}
                 <PortsGrid togglePortHandler={this.togglePort} />
-{/*
-                <Midi portsRenderer={(groupedPorts, togglePortHandler) =>
-                        <PortsGrid
-                            groupedPorts={groupedPorts}
-                            togglePortHandler={togglePortHandler}
-                            deviceInputPortID={deviceInputPortID}
-                        />}
-                    messageType={RECEIVE_MSG_TYPES}
-                    onError={this.onMidiError}
-                    onMidiInputEvent={this.handleMidiInputEvent}
-                    onInputConnection={this.onInputConnection}
-                    onInputDisconnection={this.onInputDisconnection} />
-*/}
             </div>
         );
     }

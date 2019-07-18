@@ -49,11 +49,6 @@ class App extends Component {
                         <div className="right">
                             <Messages />
                         </div>
-{/*
-                    <div className="content-wrapper">
-                        <Messages />
-                    </div>
-*/}
                     </div>
                 </Fragment>
             </Provider>

@@ -10,31 +10,10 @@ class AppState {
 
     midi = {
         inputs: {}
-        // output: null        // midi port ID
     };
 
     messages = [];       // MIDI monitor
 
-    // device_ok = false;
-
-/*
-    get connected() {
-        return !!(this.midi.input && this.midi.output);
-    }
-*/
-
-/*
-    setMidiInput(port_id) {
-        const changed = port_id !== this.midi.input;   // to force checkDevice with we replace an output by another output
-        this.midi.input = port_id;
-        if (changed) {
-            this.device_ok = false;
-        }
-        // if (port_id) {
-        //     this.checkDevice();
-        // }
-    }
-*/
     addInput(port) {
         if (this.midi.inputs.hasOwnProperty(port.id) && this.midi.inputs[port.id] !== null) {
             // already registered
@@ -61,19 +40,6 @@ class AppState {
     disableInput(port_id) {
         if (this.midi.inputs[port_id]) this.midi.inputs[port_id].enabled = false;
     }
-
-    /*
-        setMidiOutput(port_id) {
-            const changed = port_id !== this.midi.output;   // to force checkDevice with we replace an output by another output
-            this.midi.output = port_id;
-            if (changed) {
-                this.device_ok = false;
-            }
-            // if (port_id) {
-            //     this.checkDevice();
-            // }
-        }
-    */
 
     appendMessageIn(msg) {
         // const M = this.messages_in;

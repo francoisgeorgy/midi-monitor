@@ -11,8 +11,6 @@ class PortsGrid extends React.Component {
                 <div className="ports-grid">{
                     Object.keys(ports).map((port_id, index) => {
                         const port = ports[port_id];
-                        // const checked = groupedPorts[name].input.selected;
-                        // const id = `switch-${groupedPorts[name].input.id}`;
                         if (port) {
                             console.log("PortsGrid", port_id);
                             return (
@@ -39,18 +37,5 @@ class PortsGrid extends React.Component {
     }
 
 }
-
-/*
-                                groupedPorts[name].input &&
-                        <div className="port-switch">
-                            <Switch onChange={() => togglePortHandler(groupedPorts[name].input.id)}
-                                    checked={groupedPorts[name].input.selected} id={`switch-${groupedPorts[name].input.id}`}
-                                    className="react-switch"
-                                    height={16} width={36}/>
-                            <div>
-                                1234
-                            </div>
-                        </div>
- */
 
 export default inject('appState')(observer(PortsGrid));
