@@ -19,7 +19,6 @@ class App extends Component {
         help: false
     };
 
-
 /*
     componentDidMount(){
         const s = loadPreferences();

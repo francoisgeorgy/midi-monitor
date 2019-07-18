@@ -1,26 +1,29 @@
-import {computed, decorate, observable} from 'mobx';
+import {decorate, observable} from 'mobx';
 import parseMidi from "parse-midi";
 
-export const DIRECTION_READ = 'reading';    // value must also match css class used like .midi-progress.reading
-export const DIRECTION_WRITE = 'writing';   // value must also match css class used like .midi-progress.writing
+// export const DIRECTION_READ = 'reading';    // value must also match css class used like .midi-progress.reading
+// export const DIRECTION_WRITE = 'writing';   // value must also match css class used like .midi-progress.writing
 
 const MIDI_CONSOLE_SIZE = 100;
 
 class AppState {
 
     midi = {
-        input: null,        // midi port ID
-        output: null        // midi port ID
+        inputs: {}
+        // output: null        // midi port ID
     };
 
     messages = [];       // MIDI monitor
 
-    device_ok = false;
+    // device_ok = false;
 
+/*
     get connected() {
         return !!(this.midi.input && this.midi.output);
     }
+*/
 
+/*
     setMidiInput(port_id) {
         const changed = port_id !== this.midi.input;   // to force checkDevice with we replace an output by another output
         this.midi.input = port_id;
@@ -31,19 +34,46 @@ class AppState {
         //     this.checkDevice();
         // }
     }
-
-/*
-    setMidiOutput(port_id) {
-        const changed = port_id !== this.midi.output;   // to force checkDevice with we replace an output by another output
-        this.midi.output = port_id;
-        if (changed) {
-            this.device_ok = false;
-        }
-        // if (port_id) {
-        //     this.checkDevice();
-        // }
-    }
 */
+    addInput(port) {
+        if (this.midi.inputs.hasOwnProperty(port.id) && this.midi.inputs[port.id] !== null) {
+            // already registered
+            return false;
+        }
+        if (global.dev) console.log('addInput', port.id);
+        this.midi.inputs[port.id] = {
+            name: port.name,
+            enabled: false
+        };
+        return true;
+    }
+
+    removeInput(port_id) {
+        if (global.dev) console.log('removeInput', port_id);
+        // delete this.midi.inputs[port.id];    // do not use delete with mobx; see https://github.com/mobxjs/mobx/issues/822
+        this.midi.inputs[port_id] = null;
+    }
+
+    enableInput(port_id) {
+        if (this.midi.inputs[port_id]) this.midi.inputs[port_id].enabled = true;
+    }
+
+    disableInput(port_id) {
+        if (this.midi.inputs[port_id]) this.midi.inputs[port_id].enabled = false;
+    }
+
+    /*
+        setMidiOutput(port_id) {
+            const changed = port_id !== this.midi.output;   // to force checkDevice with we replace an output by another output
+            this.midi.output = port_id;
+            if (changed) {
+                this.device_ok = false;
+            }
+            // if (port_id) {
+            //     this.checkDevice();
+            // }
+        }
+    */
 
     appendMessageIn(msg) {
         // const M = this.messages_in;
@@ -213,9 +243,9 @@ class AppState {
 // https://mobx.js.org/best/decorators.html
 decorate(AppState, {
     midi: observable,
-    messages: observable,
-    device_ok: observable,
-    connected: computed
+    messages: observable
+    // device_ok: observable,
+    // connected: computed
 });
 
 export const appState = new AppState();

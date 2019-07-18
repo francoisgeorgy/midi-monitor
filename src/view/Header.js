@@ -17,7 +17,7 @@ class Header extends React.Component {
 
     render() {
 
-        const S = this.props.appState;
+        // const S = this.props.appState;
 
         return (
             <Fragment>

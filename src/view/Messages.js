@@ -1,10 +1,11 @@
-import React, {Fragment} from "react";
+import React from "react";
 import {inject, observer} from "mobx-react";
 import {hs} from "../utils/hexstring";
 import "./Messages.css";
 
 class Messages extends React.Component {
 
+/*
     clear = () => {
         this.props.appState.messages = [];   // parseMidi() messages with additional .timestamp property
     };
@@ -13,6 +14,7 @@ class Messages extends React.Component {
         if (global.dev) console.log("togglefull", index);
         this.props.appState.messages[index].view_full = !this.props.appState.messages[index].view_full;
     };
+*/
 
     // scrollToBottom = () => {
     //     if (this.props.consolePosition === 'bottom') return;
@@ -35,9 +37,9 @@ class Messages extends React.Component {
 
     render() {
 
-        const {consolePosition} = this.props;
+        // const {consolePosition} = this.props;
 
-        const cut_len = consolePosition === 'bottom' ? 48 : 12;
+        // const cut_len = consolePosition === 'bottom' ? 48 : 12;
 
         return (
                     <table>
