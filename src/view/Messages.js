@@ -17,7 +17,6 @@ class Messages extends React.Component {
 */
 
     scrollToBottom = () => {
-        // if (this.props.consolePosition === 'bottom') return;
         // const t = document.getElementById("mytable");
         // console.log(t.offsetHeight);
         // window.scrollTo(0, t.offsetHeight);
@@ -44,47 +43,59 @@ class Messages extends React.Component {
 
         // const cut_len = consolePosition === 'bottom' ? 48 : 12;
 
+        //TODO: add a filter row
+
         return (
-                    <table>
-                        <tbody>
-                        <tr>
-                            <th className="midi-time">time delta</th>
-                            <th>source</th>
-                            <th>raw data (hex)</th>
-                            <th>raw data (dec)</th>
-                            <th>msg type</th>
-                            <th className="midi-ch">ch.</th>
-                            <th>data1</th>
-                            <th>data2</th>
-                        </tr>
-                        {this.props.appState.messages && this.props.appState.messages.map((m, i) =>
-                        <tr key={i}>
-                            {/*<td className="ra">{m.timestamp.toFixed(3)}</td>*/}
-                            <td className="midi-time ra">{m.timedelta.toFixed(3)}</td>
-                            <td>{m.source}</td>
-                            <td className="data">{hs(m.data)}</td>
-                            <td className="data">{ds(m.data)}</td>
-                            <td className="data-txt nw">{m.type}</td>
-                            <td className="data midi-ch">{m.channel}</td>
-                            <td className="data">{m.data1}</td>
-                            <td className="data">{m.data2}</td>
-                            {/* m.sysex &&
-                            <Fragment>
-                                <td className="data-txt" colSpan={2}>{m.type}</td>
-                                {m.data.length <= cut_len &&
-                                <td className="data" colSpan={3}>{hs(m.data)}</td>
-                                }
-                                {m.data.length > cut_len &&
-                                <td className="data" colSpan={3}>{hs(m.view_full ? m.data : m.data.slice(0, cut_len))} <span className="toggle_full" onClick={() => this.toggleFull(i)}>{m.view_full ? 'less' : 'full'}</span></td>
-                                }
-                            </Fragment>
-                            */}
-                        </tr>
-                        )}
-                        <tr ref={(el) => { this.messagesEnd = el; }}>
-                        </tr>
-                        </tbody>
-                    </table>
+            <table>
+                <tbody>
+                <tr>
+                    <th className="midi-time">time delta</th>
+                    <th>source</th>
+                    <th>raw data (hex)</th>
+                    <th>raw data (dec)</th>
+                    <th>msg type</th>
+                    <th className="midi-ch">ch.</th>
+                    <th>data1</th>
+                    <th>data2</th>
+                </tr>
+                <tr>
+                    <th className="filter"><input type="text" placeholder="filter"/></th>
+                    <th className="filter"><input type="text" placeholder="filter"/></th>
+                    <th className="filter"><input type="text" placeholder="filter"/></th>
+                    <th className="filter"><input type="text" placeholder="filter"/></th>
+                    <th className="filter"><input type="search" placeholder="filter"  value="example" className="active" /></th>
+                    <th className="filter"><input type="text" placeholder="filter"/></th>
+                    <th className="filter"><input type="text" placeholder="filter"/></th>
+                    <th className="filter"><input type="text" placeholder="filter"/></th>
+                </tr>
+                {this.props.appState.messages && this.props.appState.messages.map((m, i) =>
+                <tr key={i}>
+                    {/*<td className="ra">{m.timestamp.toFixed(3)}</td>*/}
+                    <td className="midi-time ra">{m.timedelta.toFixed(3)}</td>
+                    <td>{m.source}</td>
+                    <td className="data">{hs(m.data)}</td>
+                    <td className="data">{ds(m.data)}</td>
+                    <td className="data-txt nw">{m.type}</td>
+                    <td className="data midi-ch">{m.channel}</td>
+                    <td className="data">{m.data1}</td>
+                    <td className="data">{m.data2}</td>
+                    {/* m.sysex &&
+                    <Fragment>
+                        <td className="data-txt" colSpan={2}>{m.type}</td>
+                        {m.data.length <= cut_len &&
+                        <td className="data" colSpan={3}>{hs(m.data)}</td>
+                        }
+                        {m.data.length > cut_len &&
+                        <td className="data" colSpan={3}>{hs(m.view_full ? m.data : m.data.slice(0, cut_len))} <span className="toggle_full" onClick={() => this.toggleFull(i)}>{m.view_full ? 'less' : 'full'}</span></td>
+                        }
+                    </Fragment>
+                    */}
+                </tr>
+                )}
+                <tr ref={(el) => { this.messagesEnd = el; }}>
+                </tr>
+                </tbody>
+            </table>
         );
     }
 }

@@ -6,32 +6,7 @@ import Header from "./view/Header";
 import Messages from "./view/Messages";
 import './App.css';
 
-const DEFAULT_CONSOLE_POSITION = 'left';
-const DEFAULT_HELP_POSITION = 'right';
-
 class App extends Component {
-
-    state = {
-        dropZoneActive: false,
-        consoleActive: false,
-        consolePosition: DEFAULT_CONSOLE_POSITION,
-        helpPosition: DEFAULT_HELP_POSITION,
-        help: false
-    };
-
-/*
-    componentDidMount(){
-        const s = loadPreferences();
-        this.setState(
-            {
-                consoleActive: s.midi_console || false,
-                consolePosition: s.midi_console_position || DEFAULT_CONSOLE_POSITION,
-                help: s.help || false,
-                helpPosition: s.help_position || DEFAULT_HELP_POSITION
-            }
-        );
-    }
-*/
 
     render() {
 

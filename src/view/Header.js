@@ -55,7 +55,18 @@ class Header extends React.Component {
                             title="Open a popup with the some help information.">Help</button>
 */}
 
+                    <div>TODO: display direction</div>
+                    <div>TODO: global filter</div>
+
                     <div className="spacer"> </div>
+
+                    <div className="keep-last">
+                        Keep the last <input type="text" size="4"
+                                             value={this.props.appState.queue_size}
+                                             onChange={(e) => this.props.appState.queue_size = parseInt(e.target.value, 10)}/> messages.
+                        {/*<input type="range" min="1" max="100"onChange={(e) => this.props.appState.queue_size = parseInt(e.target.value, 10)}/>*/}
+
+                    </div>
 
                     <button onClick={this.clearMessages}>CLEAR ALL</button>
 

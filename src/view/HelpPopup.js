@@ -1,21 +1,7 @@
 import React from "react";
 import "./Help.css";
-/*
-// noinspection ES6CheckImport
-import {ReactComponent as LeftPanelIcon} from "../img/right-panel-layout.svg";
-// noinspection ES6CheckImport
-import {ReactComponent as BottomPanelIcon} from "../img/bottom-panel-layout.svg";
-// noinspection ES6CheckImport
-import {ReactComponent as RightPanelIcon} from "../img/left-panel-layout.svg";
-*/
 
 class Help extends React.Component {
-
-/*
-    setPosition = (position) => {
-        this.props.setPosition(position)
-    };
-*/
 
     close = () => {
         window.close();
@@ -28,19 +14,6 @@ class Help extends React.Component {
                 <div className="panel-title">
                     MIDI Baby Editor Help
                     <button className="btn btn-primary btn-small" onClick={this.close}>Close</button>
-{/*
-                    <div className="console-positions">
-                        <div className={this.props.helpPosition === 'left' ? 'on' : ''}
-                             title="Display the help on the left"
-                             onClick={() => this.setPosition("left")}><LeftPanelIcon /></div>
-                        <div className={this.props.helpPosition === 'top' ? 'on' : ''}
-                             title="Display the help at the top"
-                             onClick={() => this.setPosition("top")}><BottomPanelIcon /></div>
-                        <div className={this.props.helpPosition === 'right' ? 'on' : ''}
-                             title="Display the help on the right"
-                             onClick={() => this.setPosition("right")}><RightPanelIcon /></div>
-                    </div>
-*/}
                 </div>
                 <div className="help">
                     {/*<h2>Help</h2>*/}

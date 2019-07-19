@@ -1,36 +1,18 @@
 
 .pre-header {
-    /*margin-bottom: 2px;*/
     padding: 2px 10px 0 10px;
     font-size: 12px;
     color: var(--text-light);
-    /*text-align: right;*/
 }
 .pre-header a {
     text-decoration: none;
 }
 
 .header {
-    /*border-top: 2px solid #1e85be;*/
-    /*border-top: 1px solid #000;*/
-    /*margin-bottom: 1px;*/
     display: flex;
     flex-direction: row;
     align-items: center;
-    /*background-color: #3a3a3a;*/
-    /*background-color: #707070;*/
-    /*background-color: #eaeaea;*/
-    /*padding: 10px 10px;*/
     padding: 5px 10px;
-    /*
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: #333;
-    padding: 10px 10px 10px 10px;
-    border-left: 1px solid var(--border-dark-light);
-    border-right: 1px solid var(--border-dark-dark);
-    */
 }
 
 .header-app-name {
@@ -39,16 +21,7 @@
     text-align: right;
     cursor: pointer;
     font-size: 20px;
-    /*
-    color: #c7c7c7;
-    text-align: right;
-    cursor: pointer;
-    */
 }
-
-/*.header > button {*/
-/*    margin-right: 20px;*/
-/*}*/
 
 .header-link {
     padding: 14px 0;
@@ -75,6 +48,10 @@
     color: #fff;
 }
 
+.keep-last {
+    margin-right: 20px;
+}
+
 .spacer {
     flex-grow: 10;
 }
@@ -98,13 +75,10 @@
 }
 
 .about-title {
-    /*margin-bottom: 20px;*/
-    /*font-weight: bold;*/
     font-size: 2rem;
 }
 
 .about-deps {
-    /*margin-top: 20px;*/
     border-top: 1px solid #aaa;
     border-bottom: 1px solid #aaa;
     padding: 10px;
@@ -119,8 +93,5 @@
 }
 
 .about-support {
-    /*margin-top: 10px;*/
-    /*border-top: 1px solid #aaa;*/
-    /*padding: 10px;*/
     margin-bottom: 20px;
 }

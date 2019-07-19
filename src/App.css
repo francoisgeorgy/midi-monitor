@@ -1,74 +1,25 @@
-/*html, body {*/
-/*    height: 100%;*/
-/*    margin: 0;*/
-/*}*/
 
-
-.pre-header {
-    /*background: limegreen;*/
-}
-.header {
-    /*background: yellow;*/
-}
-
+/*
 .app-wrapper {
     height: 100vh;
     display: flex;
     flex-direction: column;
 }
+*/
 
+/*
 .content-wrapper {
     display: flex;
     flex-direction: row;
 }
+*/
 
+/*
 .messages {
     flex-grow: 2;
-    /*overflow-y: scroll;*/
     overflow-y: hidden;
-    /*background: pink;*/
-}
-
-
-/*
-.panel {
-    margin: 0 5px;
-    border-bottom: 1px solid var(--border-dark);
-    background-color: #efefef;
-    !*background-color: white;*!
-}
-
-.panel-borders {
-    border-left: 1px solid var(--border-light);
-    border-right: 1px solid var(--border-dark);
-}
-
-.panel-app {
-    flex-grow: 2;
 }
 */
-
-/*
-.wrapper-app-console.midi-left .panel-console,
-.wrapper-app-console.midi-right .panel-console {
-    width: 30%;
-}
-
-.wrapper-app-help.help-left .panel-help,
-.wrapper-app-help.help-right .panel-help {
-    width: 33%;
-}
-
-.wrapper-app-console.midi-bottom .midi-console {
-    padding-bottom: 10px;
-}
-*/
-
-
-.instruction {
-    font-size: 12px;
-    color: var(--text-light);
-}
 
 .left-space {
     margin-left: 5px;
@@ -114,12 +65,6 @@ h3, h4 {
     margin-top: 0.5em;
 }
 
-.warn {
-    color: black;
-    background-color: darkorange;
-    padding: 4px;
-
-}
 
 select:not([multiple]) {
     font-size: 12px;
@@ -135,12 +80,6 @@ select:not([multiple]) {
     /*padding-right: 1.5em*/
     border-radius: 0;
 }
-
-/*
-select {
-    font-size: 14px;
-}
-*/
 
 input[type="checkbox"],
 input[type="radio"] {

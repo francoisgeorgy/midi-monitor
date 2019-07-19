@@ -222,7 +222,7 @@ class MidiHandler extends React.Component {
         }
 
         return (
-            <div className="Xsubheader-left">
+            <div>
                 {error_message &&
                 <div className="error"><div>{error_message}</div></div>}
                 <Ports togglePortHandler={this.togglePort} />

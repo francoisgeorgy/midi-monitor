@@ -69,6 +69,28 @@ body,
     background-color: #d0d0d0;
 }
 
+.right table th.filter {
+    text-align: left;
+    top: 20px;
+    position: sticky;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    padding: 4px 8px;
+    vertical-align: top;
+    background-color: #e0e0e0;
+    font-weight: 400;
+}
+
+th.filter input {
+    width: calc(100% - 8px);
+    border: none;
+}
+
+th.filter input.active {
+    background-color: #ffff77;
+}
+
+
 .right table td {
     padding: 2px 8px;
 }

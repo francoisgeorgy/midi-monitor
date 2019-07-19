@@ -19,7 +19,7 @@
 }
 */
 .port {
-    border: 1px solid #999;
+    border: 1px solid #5c925c;
     /*border-radius: 5px;*/
     /*margin-right: 10px;*/
     margin: 5px 0;
@@ -61,10 +61,15 @@
     border: 1px solid #555;
     padding: 0 2px;
     margin-right: 2px;
+    user-select: none;
 }
 
 .port-option-trigger.on {
     background-color: yellow;
+}
+
+.port-option-trigger.warn {
+    background-color: orange;
 }
 
 .port-messages {

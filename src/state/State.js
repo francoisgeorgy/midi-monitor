@@ -15,6 +15,8 @@ class AppState {
 
     messages = [];       // MIDI monitor
 
+    queue_size = MIDI_CONSOLE_SIZE;
+
     addInput(port) {
         if (this.midi.inputs.hasOwnProperty(port.id) && this.midi.inputs[port.id] !== null) {
             // already registered
@@ -30,7 +32,7 @@ class AppState {
             solo: false,        // TODO
             color: null,        // TODO
             muted: false,       // TODO
-            visible: true       // TODO
+            hidden: false       // TODO
         };
         return true;
     }
@@ -46,7 +48,11 @@ class AppState {
     }
 
     disableInput(port_id) {
-        if (this.midi.inputs[port_id]) this.midi.inputs[port_id].enabled = false;
+        if (this.midi.inputs[port_id]) {
+            this.midi.inputs[port_id].enabled = false;
+            this.midi.inputs[port_id].solo = false;
+            this.midi.inputs[port_id].muted = false;
+        }
     }
 
 /*
@@ -66,19 +72,30 @@ class AppState {
     toggleSolo(port_id) {
         if (!this.midi.inputs[port_id]) return;
         this.midi.inputs[port_id].solo = !this.midi.inputs[port_id].solo;
+        // if (this.midi.inputs[port_id].solo) = this.midi.inputs[port_id].muted = false;
+/*
         // if at least one port is solo, mute all the other ports that are not solo
-        Object.keys(this.midi.inputs).forEach(port_id => {
-            //FIXME: fix solo/mute toggling
-            this.midi.inputs[port_id].muted = !this.midi.inputs[port_id].solo;
-            // if (!this.midi.inputs[port_id].solo) {
-            //     this.midi.inputs[port_id].mute = true;
-            // }
-        });
+        if (this.midi.inputs[port_id].solo) {
+            Object.keys(this.midi.inputs).forEach(port_id => {
+                //FIXME: fix solo/mute toggling
+                this.midi.inputs[port_id].muted = !this.midi.inputs[port_id].solo;
+                // if (!this.midi.inputs[port_id].solo) {
+                //     this.midi.inputs[port_id].mute = true;
+                // }
+            });
+        }
+*/
     }
 
     toggleMuted(port_id) {
         if (!this.midi.inputs[port_id]) return;
         this.midi.inputs[port_id].muted = !this.midi.inputs[port_id].muted;
+        // if (this.midi.inputs[port_id].muted) = this.midi.inputs[port_id].solo = false;
+    }
+
+    toggleVisibility(port_id) {
+        if (!this.midi.inputs[port_id]) return;
+        this.midi.inputs[port_id].hidden = !this.midi.inputs[port_id].hidden;
     }
 
     clearMessages() {
@@ -93,7 +110,7 @@ class AppState {
         }
 
         // const M = this.messages_in;
-        if (this.messages.length >= MIDI_CONSOLE_SIZE) {
+        while (this.messages.length >= this.queue_size) {
             this.messages.shift();
         }
 
@@ -262,7 +279,8 @@ class AppState {
 // https://mobx.js.org/best/decorators.html
 decorate(AppState, {
     midi: observable,
-    messages: observable
+    messages: observable,
+    queue_size: observable
     // device_ok: observable,
     // connected: computed
 });
