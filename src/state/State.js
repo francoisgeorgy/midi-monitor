@@ -1,6 +1,7 @@
 import {decorate, observable} from 'mobx';
 import parseMidi from "parse-midi";
 import * as WebMidi from "webmidi";
+import {ds, hs} from "../utils/hexstring";
 
 // export const DIRECTION_READ = 'reading';    // value must also match css class used like .midi-progress.reading
 // export const DIRECTION_WRITE = 'writing';   // value must also match css class used like .midi-progress.writing
@@ -13,7 +14,7 @@ class AppState {
         inputs: {}
     };
 
-    messages = [];       // MIDI monitor
+    messages = [];  // messages ready for displaying, and filtering
 
     queue_size = MIDI_CONSOLE_SIZE;
 
@@ -122,17 +123,25 @@ class AppState {
         const m = {};
         m.direction = "receive";
         m.timestamp = msg.timestamp;
-        m.timedelta = last_timestamp === 0 ? 0 : (msg.timestamp - last_timestamp);
+        // m.timedelta = last_timestamp === 0 ? 0 : (msg.timestamp - last_timestamp);
         m.data = msg.data;
         m.source = msg.target.name;
         m.sysex = false;
         m.view_full = false;
 
+        // display properties
+        const delta = m.timedelta = last_timestamp === 0 ? 0 : (msg.timestamp - last_timestamp);
+        m.time_delta = delta.toFixed(2);
+        m.raw_hex = hs(m.data);
+        m.raw_dec = ds(m.data);
+        m.infos = hs(m.data);
+
         const p = parseMidi(msg.data);
 
         // if (global.dev) console.log("appendMessageIn", p);
 
-        m.channel = p.channel;
+        m.channel = parseInt(p.channel, 10);
+
         switch (p.messageType) {
             case "noteoff":
                 m.type = "Note OFF";

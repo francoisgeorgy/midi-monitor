@@ -2,6 +2,17 @@ import React from "react";
 import {inject, observer} from "mobx-react";
 import {ds, hs} from "../utils/hexstring";
 import "./Messages.css";
+import {produce} from "immer";
+
+const FILTER_GLOBAL = 'global';
+const FILTER_TIME = 'time';
+const FILTER_SOURCE = 'source';
+const FILTER_RAW_HEX = 'raw_hex';
+const FILTER_RAW_DEC = 'raw_dec';
+const FILTER_MSG_TYPE = 'msg_type';
+const FILTER_CH = 'ch';
+const FILTER_INFOS = 'infos';
+
 
 class Messages extends React.Component {
 
@@ -15,6 +26,24 @@ class Messages extends React.Component {
         this.props.appState.messages[index].view_full = !this.props.appState.messages[index].view_full;
     };
 */
+    state = {
+        filter: {
+            [FILTER_GLOBAL]: '',
+            [FILTER_TIME]: '',
+            [FILTER_SOURCE]: '',
+            [FILTER_RAW_HEX]: '',
+            [FILTER_RAW_DEC]: '',
+            [FILTER_MSG_TYPE]: '',
+            [FILTER_CH]: '',
+            [FILTER_INFOS]: ''
+        }
+    };
+
+    setFilter(filter, value) {
+        this.setState(produce(
+            draft => {draft.filter[filter] = value}
+        ));
+    }
 
     scrollToBottom = () => {
         // const t = document.getElementById("mytable");
@@ -45,6 +74,23 @@ class Messages extends React.Component {
 
         //TODO: add a filter row
 
+        const f = this.state.filter;
+
+        const filtered =
+            this.props.appState.messages &&
+            this.props.appState.messages.filter(
+                m => {
+                    let b =
+                        (f[FILTER_RAW_HEX] === '' ? true : m.raw_hex.includes(f[FILTER_RAW_HEX])) &&
+                        (f[FILTER_RAW_DEC] === '' ? true : m.raw_dec.includes(f[FILTER_RAW_DEC])) &&
+                        (f[FILTER_TIME] === '' ? true : m.time_delta.includes(f[FILTER_TIME])) &&
+                        (f[FILTER_SOURCE] === '' ? true : m.source.includes(f[FILTER_SOURCE])) &&
+                        (f[FILTER_MSG_TYPE] === '' ? true : m.type.includes(f[FILTER_MSG_TYPE])) &&
+                        (f[FILTER_INFOS] === '' ? true : m.infos.includes(f[FILTER_INFOS])) &&
+                        (f[FILTER_CH] === '' ? true : m.channel.includes(f[FILTER_CH]));
+                    return b;
+                });
+
         return (
             <table>
                 <tbody>
@@ -59,25 +105,25 @@ class Messages extends React.Component {
                     {/*<th>data2</th>*/}
                 </tr>
                 <tr>
-                    <th className="filter midi-time"><input type="text" placeholder="filter"/></th>
-                    <th className="filter"><input type="text" placeholder="filter"/></th>
-                    <th className="filter"><input type="text" placeholder="filter"/></th>
-                    <th className="filter"><input type="text" placeholder="filter"/></th>
-                    <th className="filter"><input type="search" placeholder="filter"  value="example" className="active" /></th>
+                    <th className="filter midi-time"><input type="text" placeholder="filter" value={f[FILTER_TIME]} onChange={(e) => this.setFilter(FILTER_TIME, e.target.value)} /></th>
+                    <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_SOURCE]} onChange={(e) => this.setFilter(FILTER_SOURCE, e.target.value)} /></th>
+                    <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_RAW_HEX]} onChange={(e) => this.setFilter(FILTER_RAW_HEX, e.target.value)} /></th>
+                    <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_RAW_DEC]} onChange={(e) => this.setFilter(FILTER_RAW_DEC, e.target.value)} /></th>
+                    <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_MSG_TYPE]} onChange={(e) => this.setFilter(FILTER_MSG_TYPE, e.target.value)} /></th>
                     <th className="filter midi-ch"><input type="text" placeholder="filter"/></th>
-                    <th className="filter"><input type="text" placeholder="filter"/></th>
+                    <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_INFOS]} onChange={(e) => this.setFilter(FILTER_INFOS, e.target.value)} /></th>
                     {/*<th className="filter"><input type="text" placeholder="filter"/></th>*/}
                 </tr>
-                {this.props.appState.messages && this.props.appState.messages.map((m, i) =>
+                {filtered && filtered.map((m, i) =>
                 <tr key={i}>
                     {/*<td className="ra">{m.timestamp.toFixed(3)}</td>*/}
-                    <td className="midi-time ra">{m.timedelta.toFixed(2)}</td>
+                    <td className="midi-time ra">{m.time_delta}</td>
                     <td className="nw">{m.source}</td>
-                    <td className="data">{hs(m.data)}</td>
-                    <td className="data">{ds(m.data)}</td>
+                    <td className="data">{m.raw_hex}</td>
+                    <td className="data">{m.raw_dec}</td>
                     <td className="data-txt nw">{m.type}</td>
                     <td className="data midi-ch">{m.channel}</td>
-                    <td className="data data-byte">{m.data1}</td>
+                    <td className="data data-byte">{m.infos}</td>
                     {/*<td className="data data-byte">{m.data2}</td>*/}
                     {/* m.sysex &&
                     <Fragment>
