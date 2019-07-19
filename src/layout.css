@@ -45,7 +45,7 @@ body,
 */
 
 .right {
-    /*flex: 100;*/
+    flex: 10;
     overflow-y: auto;
     height: 100%;
     background-color: #ffffff;
@@ -53,13 +53,14 @@ body,
 
 .right table {
     width: 100%;
-    table-layout: fixed;
+    /*table-layout: fixed;*/
     border: none;
     border-collapse: collapse;
 }
 
 .right table th {
     text-align: left;
+    white-space: nowrap;
     top: 0;
     position: sticky;
     border-left: 1px solid #999;
@@ -81,18 +82,10 @@ body,
     font-weight: 400;
 }
 
-th.filter input {
-    width: calc(100% - 8px);
-    border: none;
-}
-
-th.filter input.active {
-    background-color: #ffff77;
-}
-
-
 .right table td {
     padding: 2px 8px;
+    vertical-align: top;
+    /*max-width: 25vw;*/
 }
 
 tr:nth-child(even) {
@@ -102,3 +95,16 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
     background: #f0f0f0
 }
+
+table th,
+table td {
+    min-width: 7vw;
+    max-width: 25vw;
+}
+
+table th:last-child,
+table td:last-child {
+    max-width: none;
+    width: 100%;
+}
+

@@ -22,12 +22,22 @@
 }
 */
 
+th.filter input {
+    width: calc(100% - 6px);
+    border: none;
+}
+
+th.filter input.active {
+    background-color: #ffff77;
+}
+
 .midi-time {
     width: 6rem;
 }
 
-.midi-ch {
-    width: 3rem;
+table th.midi-ch,
+table td.midi-ch {
+    min-width: 2vw;
 }
 
 .ra {

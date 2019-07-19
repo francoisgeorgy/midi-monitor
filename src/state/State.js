@@ -100,7 +100,10 @@ class AppState {
 
     clearMessages() {
         this.messages = [];
-        Object.keys(this.midi.inputs).forEach(port_id => this.midi.inputs[port_id].nb_messages = 0);
+        Object.keys(this.midi.inputs).forEach(
+            port_id => {
+                if (this.midi.inputs[port_id]) this.midi.inputs[port_id].nb_messages = 0
+            });
     }
 
     appendMessageIn(msg) {

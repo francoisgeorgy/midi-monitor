@@ -49,36 +49,36 @@ class Messages extends React.Component {
             <table>
                 <tbody>
                 <tr>
-                    <th className="midi-time">time delta</th>
+                    <th className="midi-time">time delta (ms)</th>
                     <th>source</th>
                     <th>raw data (hex)</th>
                     <th>raw data (dec)</th>
                     <th>msg type</th>
                     <th className="midi-ch">ch.</th>
-                    <th>data1</th>
-                    <th>data2</th>
+                    <th>infos</th>
+                    {/*<th>data2</th>*/}
                 </tr>
                 <tr>
-                    <th className="filter"><input type="text" placeholder="filter"/></th>
+                    <th className="filter midi-time"><input type="text" placeholder="filter"/></th>
                     <th className="filter"><input type="text" placeholder="filter"/></th>
                     <th className="filter"><input type="text" placeholder="filter"/></th>
                     <th className="filter"><input type="text" placeholder="filter"/></th>
                     <th className="filter"><input type="search" placeholder="filter"  value="example" className="active" /></th>
+                    <th className="filter midi-ch"><input type="text" placeholder="filter"/></th>
                     <th className="filter"><input type="text" placeholder="filter"/></th>
-                    <th className="filter"><input type="text" placeholder="filter"/></th>
-                    <th className="filter"><input type="text" placeholder="filter"/></th>
+                    {/*<th className="filter"><input type="text" placeholder="filter"/></th>*/}
                 </tr>
                 {this.props.appState.messages && this.props.appState.messages.map((m, i) =>
                 <tr key={i}>
                     {/*<td className="ra">{m.timestamp.toFixed(3)}</td>*/}
-                    <td className="midi-time ra">{m.timedelta.toFixed(3)}</td>
-                    <td>{m.source}</td>
+                    <td className="midi-time ra">{m.timedelta.toFixed(2)}</td>
+                    <td className="nw">{m.source}</td>
                     <td className="data">{hs(m.data)}</td>
                     <td className="data">{ds(m.data)}</td>
                     <td className="data-txt nw">{m.type}</td>
                     <td className="data midi-ch">{m.channel}</td>
-                    <td className="data">{m.data1}</td>
-                    <td className="data">{m.data2}</td>
+                    <td className="data data-byte">{m.data1}</td>
+                    {/*<td className="data data-byte">{m.data2}</td>*/}
                     {/* m.sysex &&
                     <Fragment>
                         <td className="data-txt" colSpan={2}>{m.type}</td>
