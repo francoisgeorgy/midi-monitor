@@ -7,12 +7,22 @@ export const padZero = (str, len, char) => {
     return s + str;
 };
 
+// hex
 export const h = v => {
     // noinspection JSCheckFunctionSignatures
     return (v === null || v === undefined) ? "" : padZero(v.toString(16).toUpperCase(), 2);
 };
 
+export const d = v => {
+    // noinspection JSCheckFunctionSignatures
+    return (v === null || v === undefined) ? "" : padZero(v.toString(10).toUpperCase(), 2);
+};
+
+// hex string
 export const hs = data => (data === null || data === undefined) ? "" : (Array.from(data).map(n => h(n))).join(" ");    // Array.from() is necessary to get a non-typed array
+
+// dec string
+export const ds = data => (data === null || data === undefined) ? "" : (Array.from(data).map(n => d(n))).join(" ");    // Array.from() is necessary to get a non-typed array
 
 // hex string compact
 export const hsc = data => (data === null || data === undefined) ? "" : (Array.from(data).map(n => h(n))).join('');    // Array.from() is necessary to get a non-typed array

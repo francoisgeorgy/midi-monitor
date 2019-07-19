@@ -1,5 +1,6 @@
 import {decorate, observable} from 'mobx';
 import parseMidi from "parse-midi";
+import * as WebMidi from "webmidi";
 
 // export const DIRECTION_READ = 'reading';    // value must also match css class used like .midi-progress.reading
 // export const DIRECTION_WRITE = 'writing';   // value must also match css class used like .midi-progress.writing
@@ -23,9 +24,13 @@ class AppState {
         this.midi.inputs[port.id] = {
             name: port.name,
             manufacturer: port.manufacturer,
-            enabled: false,
-            minimized: false,
-            nb_messages: 0
+            enabled: false,     // TODO: rename to "armed" like "armed for recording" ?
+            minimized: false,   // TODO
+            nb_messages: 0,
+            solo: false,        // TODO
+            color: null,        // TODO
+            muted: false,       // TODO
+            visible: true       // TODO
         };
         return true;
     }
@@ -44,7 +49,42 @@ class AppState {
         if (this.midi.inputs[port_id]) this.midi.inputs[port_id].enabled = false;
     }
 
+/*
+    setSolo(port_id) {
+        if (!this.midi.inputs[port_id]) return;
+        this.midi.inputs[port_id].solo = true;
+        // mute all the other ports that are not solo
+        Object.keys(this.midi.inputs).forEach(port_id => {
+            this.midi.inputs[port_id].muted = !this.midi.inputs[port_id].solo;
+            // if (!this.midi.inputs[port_id].solo) {
+            //     this.midi.inputs[port_id].mute = true;
+            // }
+        });
+    }
+*/
 
+    toggleSolo(port_id) {
+        if (!this.midi.inputs[port_id]) return;
+        this.midi.inputs[port_id].solo = !this.midi.inputs[port_id].solo;
+        // if at least one port is solo, mute all the other ports that are not solo
+        Object.keys(this.midi.inputs).forEach(port_id => {
+            //FIXME: fix solo/mute toggling
+            this.midi.inputs[port_id].muted = !this.midi.inputs[port_id].solo;
+            // if (!this.midi.inputs[port_id].solo) {
+            //     this.midi.inputs[port_id].mute = true;
+            // }
+        });
+    }
+
+    toggleMuted(port_id) {
+        if (!this.midi.inputs[port_id]) return;
+        this.midi.inputs[port_id].muted = !this.midi.inputs[port_id].muted;
+    }
+
+    clearMessages() {
+        this.messages = [];
+        Object.keys(this.midi.inputs).forEach(port_id => this.midi.inputs[port_id].nb_messages = 0);
+    }
 
     appendMessageIn(msg) {
 
@@ -57,9 +97,12 @@ class AppState {
             this.messages.shift();
         }
 
+        const last_timestamp = this.messages.length > 0 ? this.messages[this.messages.length - 1].timestamp : 0;
+
         const m = {};
         m.direction = "receive";
         m.timestamp = msg.timestamp;
+        m.timedelta = last_timestamp === 0 ? 0 : (msg.timestamp - last_timestamp);
         m.data = msg.data;
         m.source = msg.target.name;
         m.sysex = false;
@@ -67,7 +110,7 @@ class AppState {
 
         const p = parseMidi(msg.data);
 
-        if (global.dev) console.log("appendMessageIn", p);
+        // if (global.dev) console.log("appendMessageIn", p);
 
         m.channel = p.channel;
         switch (p.messageType) {

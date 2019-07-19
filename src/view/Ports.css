@@ -44,6 +44,7 @@
 .port-name {
     font-weight: 700;
     /*margin-right: 4px;*/
+    margin: 2px 0;
 }
 
 .port-manufacturer {
@@ -54,6 +55,18 @@
     display: flex;
 
 }
+
+.port-option-trigger {
+    font-size: 12px;
+    border: 1px solid #555;
+    padding: 0 2px;
+    margin-right: 2px;
+}
+
+.port-option-trigger.on {
+    background-color: yellow;
+}
+
 .port-messages {
     text-align: right;
     flex: 2;

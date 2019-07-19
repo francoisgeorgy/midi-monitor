@@ -1,9 +1,10 @@
 
 .pre-header {
     /*margin-bottom: 2px;*/
+    padding: 2px 10px 0 10px;
     font-size: 12px;
     color: var(--text-light);
-    text-align: right;
+    /*text-align: right;*/
 }
 .pre-header a {
     text-decoration: none;
@@ -20,7 +21,7 @@
     /*background-color: #707070;*/
     /*background-color: #eaeaea;*/
     /*padding: 10px 10px;*/
-    padding: 5px 0 5px 0;
+    padding: 5px 10px;
     /*
     display: flex;
     flex-direction: row;
@@ -45,9 +46,9 @@
     */
 }
 
-.header > button {
-    margin-right: 20px;
-}
+/*.header > button {*/
+/*    margin-right: 20px;*/
+/*}*/
 
 .header-link {
     padding: 14px 0;

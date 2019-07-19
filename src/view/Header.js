@@ -15,6 +15,10 @@ class Header extends React.Component {
         // window.open(url, "_blank", "width=900,height=600,top=200,left=100,directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no");
     };
 
+    clearMessages = ()  => {
+        this.props.appState.clearMessages();
+    };
+
     render() {
 
         // const S = this.props.appState;
@@ -25,14 +29,6 @@ class Header extends React.Component {
                     <a href="https://sysex.io/">sysex.io</a>
                 </div>
                 <div className="header">
-
-{/*
-                    <button className="btn btn-large btn-primary" onClick={this.help}
-                            title="Open a popup with the some help information.">Help</button>
-*/}
-
-                    <div className="spacer"> </div>
-
                     <Popup trigger={<div className="header-app-name">MIDI Monitor {process.env.REACT_APP_VERSION}</div>} modal closeOnDocumentClick>
                         <div className="about">
                             <div className="about-title">MIDI Monitor {process.env.REACT_APP_VERSION}</div>
@@ -53,6 +49,16 @@ class Header extends React.Component {
                             </div>
                         </div>
                     </Popup>
+
+{/*
+                    <button className="btn btn-large btn-primary" onClick={this.help}
+                            title="Open a popup with the some help information.">Help</button>
+*/}
+
+                    <div className="spacer"> </div>
+
+                    <button onClick={this.clearMessages}>CLEAR ALL</button>
+
                 </div>
             </Fragment>
         );

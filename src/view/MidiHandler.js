@@ -26,7 +26,7 @@ class MidiHandler extends React.Component {
     };
 
     handleMidiInputEvent = (e) => {
-        console.log(e);
+        // console.log(e);
         if (e.data[0] === 0xF8) {
             // we ignore Timing Clock messages
             return;
@@ -128,7 +128,7 @@ class MidiHandler extends React.Component {
 
     handleMidiConnectEvent = e => {
         if (e.port.type === "input") {
-            if (global.dev) console.log(`handleMidiConnectEvent: ${e.type} port: ${e.port.type} ${e.port.connection} ${e.port.state}: ${e.port.name} ${e.port.id}`, e);
+            // if (global.dev) console.log(`handleMidiConnectEvent: ${e.type} port: ${e.port.type} ${e.port.connection} ${e.port.state}: ${e.port.name} ${e.port.id}`, e);
             if (e.type === "disconnected") {    //FIXME: what is this?
                 //TODO: use a copy of port.id in case port is delete too soon by the webmidi api
                 const port_id = e.port.id;

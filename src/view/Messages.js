@@ -1,6 +1,6 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import {hs} from "../utils/hexstring";
+import {ds, hs} from "../utils/hexstring";
 import "./Messages.css";
 
 class Messages extends React.Component {
@@ -18,15 +18,15 @@ class Messages extends React.Component {
 
     scrollToBottom = () => {
         // if (this.props.consolePosition === 'bottom') return;
-        const t = document.getElementById("mytable");
-        console.log(t.offsetHeight);
-        window.scrollTo(0, t.offsetHeight);
-        // this.messagesEnd.scrollIntoView();
+        // const t = document.getElementById("mytable");
+        // console.log(t.offsetHeight);
+        // window.scrollTo(0, t.offsetHeight);
+        this.messagesEnd.scrollIntoView();
     };
 
-    // componentDidMount() {
-    //     this.scrollToBottom();
-    // };
+    componentDidMount() {
+        this.scrollToBottom();
+    };
 
     componentDidUpdate() {
         this.scrollToBottom();
@@ -45,28 +45,27 @@ class Messages extends React.Component {
         // const cut_len = consolePosition === 'bottom' ? 48 : 12;
 
         return (
-                    <table id="mytable">
+                    <table>
                         <tbody>
                         <tr>
-                            <th>timestamp</th>
-                            {/*<th>dir.</th>*/}
+                            <th className="midi-time">time delta</th>
                             <th>source</th>
                             <th>raw data (hex)</th>
                             <th>raw data (dec)</th>
                             <th>msg type</th>
-                            <th>ch.</th>
+                            <th className="midi-ch">ch.</th>
                             <th>data1</th>
                             <th>data2</th>
                         </tr>
                         {this.props.appState.messages && this.props.appState.messages.map((m, i) =>
                         <tr key={i}>
-                            <td>{m.timestamp.toFixed(3)}</td>
-                            {/*<td>{m.direction}</td>*/}
+                            {/*<td className="ra">{m.timestamp.toFixed(3)}</td>*/}
+                            <td className="midi-time ra">{m.timedelta.toFixed(3)}</td>
                             <td>{m.source}</td>
                             <td className="data">{hs(m.data)}</td>
-                            <td className="data">{hs(m.data)}</td>
-                            <td className="data-txt">{m.type}</td>
-                            <td className="data">{m.channel}</td>
+                            <td className="data">{ds(m.data)}</td>
+                            <td className="data-txt nw">{m.type}</td>
+                            <td className="data midi-ch">{m.channel}</td>
                             <td className="data">{m.data1}</td>
                             <td className="data">{m.data2}</td>
                             {/* m.sysex &&
@@ -82,6 +81,8 @@ class Messages extends React.Component {
                             */}
                         </tr>
                         )}
+                        <tr ref={(el) => { this.messagesEnd = el; }}>
+                        </tr>
                         </tbody>
                     </table>
         );
