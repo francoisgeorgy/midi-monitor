@@ -22,7 +22,10 @@ class AppState {
         if (global.dev) console.log('addInput', port.id);
         this.midi.inputs[port.id] = {
             name: port.name,
-            enabled: false
+            manufacturer: port.manufacturer,
+            enabled: false,
+            minimized: false,
+            nb_messages: 0
         };
         return true;
     }
@@ -41,7 +44,14 @@ class AppState {
         if (this.midi.inputs[port_id]) this.midi.inputs[port_id].enabled = false;
     }
 
+
+
     appendMessageIn(msg) {
+
+        if (this.midi.inputs[msg.target.id]) {
+            this.midi.inputs[msg.target.id].nb_messages++;
+        }
+
         // const M = this.messages_in;
         if (this.messages.length >= MIDI_CONSOLE_SIZE) {
             this.messages.shift();

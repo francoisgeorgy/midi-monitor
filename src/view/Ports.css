@@ -29,8 +29,10 @@
     flex-direction: column;
     align-items: stretch;
     /*background-color: #b8b8b8;*/
-    background-color: #e0e0e0;
+    background-color: #c7c7c7;
     font-size: 12px;
+    position: relative;
+    cursor: pointer;
 }
 
 /*.port > div {*/
@@ -57,9 +59,12 @@
     flex: 2;
 }
 
-/*.port-switch {*/
-/*    margin-left: 4px;*/
-/*}*/
+.port-switch {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    /*margin-left: 4px;*/
+}
 
 /*.react-switch {*/
 /*    vertical-align: middle;*/
@@ -70,8 +75,8 @@
 /*}*/
 
 .port.enabled {
-    background-color: yellow;
-    border-color: #c5c500;
+    background-color: #86e086;
+    border-color: #5c925c;
 }
 
 /*.device-ok .react-switch-bg {*/

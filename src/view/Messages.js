@@ -16,18 +16,21 @@ class Messages extends React.Component {
     };
 */
 
-    // scrollToBottom = () => {
-    //     if (this.props.consolePosition === 'bottom') return;
-    //     this.messagesEnd.scrollIntoView();
-    // };
+    scrollToBottom = () => {
+        // if (this.props.consolePosition === 'bottom') return;
+        const t = document.getElementById("mytable");
+        console.log(t.offsetHeight);
+        window.scrollTo(0, t.offsetHeight);
+        // this.messagesEnd.scrollIntoView();
+    };
 
     // componentDidMount() {
     //     this.scrollToBottom();
     // };
-    //
-    // componentDidUpdate() {
-    //     this.scrollToBottom();
-    // };
+
+    componentDidUpdate() {
+        this.scrollToBottom();
+    };
 
     //
     // Display format:
@@ -42,10 +45,10 @@ class Messages extends React.Component {
         // const cut_len = consolePosition === 'bottom' ? 48 : 12;
 
         return (
-                    <table>
+                    <table id="mytable">
                         <tbody>
                         <tr>
-                            {/*<th>timestamp</th>*/}
+                            <th>timestamp</th>
                             {/*<th>dir.</th>*/}
                             <th>source</th>
                             <th>raw data (hex)</th>
@@ -57,7 +60,7 @@ class Messages extends React.Component {
                         </tr>
                         {this.props.appState.messages && this.props.appState.messages.map((m, i) =>
                         <tr key={i}>
-                            {/*<td>{m.timestamp.toFixed(3)}</td>*/}
+                            <td>{m.timestamp.toFixed(3)}</td>
                             {/*<td>{m.direction}</td>*/}
                             <td>{m.source}</td>
                             <td className="data">{hs(m.data)}</td>

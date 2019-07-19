@@ -69,6 +69,10 @@ body,
     background-color: #d0d0d0;
 }
 
+.right table td {
+    padding: 2px 8px;
+}
+
 tr:nth-child(even) {
     background: #fafafa
 }

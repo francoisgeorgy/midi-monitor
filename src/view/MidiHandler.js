@@ -3,7 +3,7 @@ import {inject, observer} from "mobx-react";
 import "./MidiHandler.css";
 import {inputById, portById} from "../utils/ports";
 import * as WebMidi from "webmidi";
-import PortsGrid from "./PortsGrid";
+import Ports from "./Ports";
 
 const RECEIVE_MSG_TYPES = "midimessage";  // only receive sysex messages
 
@@ -225,7 +225,7 @@ class MidiHandler extends React.Component {
             <div className="Xsubheader-left">
                 {error_message &&
                 <div className="error"><div>{error_message}</div></div>}
-                <PortsGrid togglePortHandler={this.togglePort} />
+                <Ports togglePortHandler={this.togglePort} />
             </div>
         );
     }
