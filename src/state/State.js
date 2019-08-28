@@ -1,10 +1,6 @@
 import {decorate, observable} from 'mobx';
 import parseMidi from "parse-midi";
-import * as WebMidi from "webmidi";
 import {ds, hs} from "../utils/hexstring";
-
-// export const DIRECTION_READ = 'reading';    // value must also match css class used like .midi-progress.reading
-// export const DIRECTION_WRITE = 'writing';   // value must also match css class used like .midi-progress.writing
 
 const MIDI_CONSOLE_SIZE = 100;
 
@@ -19,6 +15,7 @@ class AppState {
     queue_size = MIDI_CONSOLE_SIZE;
 
     addInput(port) {
+        // eslint-disable-next-line
         if (this.midi.inputs.hasOwnProperty(port.id) && this.midi.inputs[port.id] !== null) {
             // already registered
             return false;

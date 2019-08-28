@@ -62,7 +62,7 @@ class MidiHandler extends React.Component {
         //TODO: error if port null
     };
 
-    disconnectInput = (port, updatePreferences=false) => {
+    disconnectInput = (port /*, updatePreferences=false*/) => {
         if (port) {
             if (global.dev) console.log(`Midi.disconnectInput: disconnect input ${port.id}`);
             if (port.removeListener) port.removeListener();
@@ -184,6 +184,8 @@ class MidiHandler extends React.Component {
         // noinspection JSUnresolvedVariable
         if (WebMidi.enabled) {
             if (global.dev) console.log(`Midi: component did mount: already enabled, register ports`);
+            // (https://github.com/eslint/eslint/issues/12117)
+            // eslint-disable-next-line
             for (let port of WebMidi.inputs) {
                 this.registerInput(port.id);
             }
@@ -197,6 +199,8 @@ class MidiHandler extends React.Component {
 
     componentWillUnmount() {
         if (global.dev) console.log("Midi: component will unmount: unregister all inputs");
+        // (https://github.com/eslint/eslint/issues/12117)
+        // eslint-disable-next-line
         for (let port of WebMidi.inputs) {
             this.unregisterInput(port);
             this.disconnectInput(port);

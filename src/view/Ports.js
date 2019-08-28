@@ -28,7 +28,7 @@ class Ports extends React.Component {
         if (ports) {
             return (
                 <div className="ports-grid">{
-                    Object.keys(ports).map((port_id, index) => {
+                    Object.keys(ports).map(port_id => {
                         const port = ports[port_id];
                         if (port) {
                             // console.log("Ports", port_id);

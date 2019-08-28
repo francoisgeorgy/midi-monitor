@@ -1,6 +1,5 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import {ds, hs} from "../utils/hexstring";
 import "./Messages.css";
 import {produce} from "immer";
 
@@ -54,11 +53,11 @@ class Messages extends React.Component {
 
     componentDidMount() {
         this.scrollToBottom();
-    };
+    }
 
     componentDidUpdate() {
         this.scrollToBottom();
-    };
+    }
 
     //
     // Display format:
