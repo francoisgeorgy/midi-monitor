@@ -1,4 +1,3 @@
-import {hs} from "./hexstring";
 
 export function inputIntValue(s) {
     if (s === undefined || s === null || s === '') return 0;

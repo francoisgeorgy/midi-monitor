@@ -1,0 +1,35 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "commonjs": true,
+        "es6": true,
+        "jquery": true
+    },
+    "plugins": [
+        "react"
+    ],
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true,
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "rules": {
+        "no-console": "off",
+        "linebreak-style": ["error", "unix"],
+        "no-prototype-builtins": "warn",
+        "no-inline-comments": "off",
+        "react/prop-types": "off"
+    },
+    "settings": {
+        "react": {
+            "pragma": "React",  // Pragma to use, default to "React"
+            "version": "detect" // React version. "detect" automatically picks the version you have installed.
+        }
+    }
+}
