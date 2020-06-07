@@ -44,6 +44,7 @@ class Ports extends React.Component {
                                     </div>
                                     <div className="port-manufacturer">{port.manufacturer || 'unknown man.'}</div>
                                     <div className="port-name">{port.name}</div>
+{/*
                                     <div className="port-options">
                                         <div className={`port-option-trigger ${port.muted ? 'on' : ''}`}
                                              onClick={(e) => {e.stopPropagation();this.toggleMuted(port_id)}}
@@ -54,10 +55,9 @@ class Ports extends React.Component {
                                         <div className={`port-option-trigger ${port.hidden ? 'warn' : ''}`}
                                              onClick={(e) => {e.stopPropagation();this.toggleVisibility(port_id)}}
                                              title="Hide or show the messages (but continues to record them).">{port.hidden ? 'hidden' : 'hide'}</div>
-                                        {/*<div>color</div>*/}
-                                        {/*<div>hide</div>*/}
                                         <div className="port-messages" title="Number of messages received on this port since the last clear.">{port.nb_messages}</div>
                                     </div>
+*/}
                                 </div>);
                         } else {
                             return null;

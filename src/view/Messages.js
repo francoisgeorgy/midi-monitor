@@ -52,11 +52,13 @@ class Messages extends React.Component {
     };
 
     componentDidMount() {
-        this.scrollToBottom();
+        // not necessary if displayed in reverse chronological order
+        if (false) this.scrollToBottom();
     }
 
     componentDidUpdate() {
-        this.scrollToBottom();
+        // not necessary if displayed in reverse chronological order
+        if (false) this.scrollToBottom();
     }
 
     //
@@ -75,6 +77,8 @@ class Messages extends React.Component {
 
         const f = this.state.filter;
 
+        // TODO: case insensitive filter
+        // TODO: regex filter
         const filtered =
             this.props.appState.messages &&
             this.props.appState.messages.filter(
@@ -123,6 +127,7 @@ class Messages extends React.Component {
                     <td className="data-txt nw">{m.type}</td>
                     <td className="data midi-ch">{m.channel}</td>
                     <td className="data data-byte">{m.infos}</td>
+                    {/*<td className="data data-byte">{m.data1} {m.data2}</td>*/}
                     {/*<td className="data data-byte">{m.data2}</td>*/}
                     {/* m.sysex &&
                     <Fragment>

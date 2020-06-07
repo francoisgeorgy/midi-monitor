@@ -17,10 +17,14 @@
 
 .header-app-name {
     font-family: "Roboto Condensed", "Roboto", Helvetica, Arial, sans-serif;
-    color: #9d9d9d;
+    /*color: #9d9d9d;*/
     text-align: right;
     cursor: pointer;
     font-size: 20px;
+}
+
+.header-app-name a {
+    text-decoration: none;
 }
 
 .header-link {

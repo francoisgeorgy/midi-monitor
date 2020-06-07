@@ -112,14 +112,17 @@ class AppState {
 
         // const M = this.messages_in;
         while (this.messages.length >= this.queue_size) {
-            this.messages.shift();
+            // this.messages.shift();
+            this.messages.pop();
         }
 
-        const last_timestamp = this.messages.length > 0 ? this.messages[this.messages.length - 1].timestamp : 0;
+        // const last_timestamp = this.messages.length > 0 ? this.messages[this.messages.length - 1].timestamp : 0;
+        const last_timestamp = this.messages.length > 0 ? this.messages[0].timestamp : 0;
 
         const m = {};
         m.direction = "receive";
-        m.timestamp = msg.timestamp;
+        // m.timestamp = msg.timestamp;
+        m.timestamp = Date.now();
         // m.timedelta = last_timestamp === 0 ? 0 : (msg.timestamp - last_timestamp);
         m.data = msg.data;
         m.source = msg.target.name;
@@ -127,11 +130,13 @@ class AppState {
         m.view_full = false;
 
         // display properties
-        const delta = m.timedelta = last_timestamp === 0 ? 0 : (msg.timestamp - last_timestamp);
+        // const delta = m.timedelta = last_timestamp === 0 ? 0 : (msg.timestamp - last_timestamp);
+        const delta = m.timedelta = last_timestamp === 0 ? 0 : (m.timestamp - last_timestamp);
         m.time_delta = delta.toFixed(2);
         m.raw_hex = hs(m.data);
         m.raw_dec = ds(m.data);
-        m.infos = hs(m.data);
+        m.infos = '';
+        // m.infos = hs(m.data);
 
         const p = parseMidi(msg.data);
 
@@ -144,22 +149,26 @@ class AppState {
                 m.type = "Note OFF";
                 m.data1 = p.key;
                 m.data2 = p.velocity;
+                m.infos = `note ${p.key} velocity ${p.velocity}`;
                 break;
             case "noteon":
                 m.type = "Note ON";
                 m.data1 = p.key;
                 m.data2 = p.velocity;
+                m.infos = `note ${p.key} velocity ${p.velocity}`;
                 break;
             case "keypressure":
                 m.type = "Key Pressure";
                 m.data1 = p.key;
                 m.data2 = p.pressure;
+                m.infos = `note ${p.key} pressure ${p.pressure}`;
                 break;
             case "controlchange":
                 m.type = "CC";
                 // m.data1 = `${p.controlNumber} ${p.controlFunction || ''}`;
                 m.data1 = `${p.controlNumber}`;
                 m.data2 = p.controlValue === 0 ? '0' : (p.controlValue || '');
+                m.infos = `controller ${p.controlNumber} value ${m.data2}`;
                 break;
             case "channelmodechange":
                 m.type = "Channel Mode Change";
@@ -170,11 +179,13 @@ class AppState {
                 m.type = "PC";
                 m.data1 = p.program === 0 ? '0' : (p.program || '');
                 m.data2 = '';
+                m.infos = `program ${m.data1}`;
                 break;
             case "channelpressure":
                 m.type = "Channel Pressure";
                 m.data1 = p.pressure;
                 m.data2 = '';
+                m.infos = `channel ${m.channel} pressure ${p.pressure}`;
                 break;
             case "pitchbendchange":
                 m.type = "Pitchbend Change";
@@ -242,7 +253,8 @@ class AppState {
                 }
                 break;
         }
-        this.messages.push(m);    //TODO: push parseMidi() and timestamp
+        // this.messages.push(m);    //TODO: push parseMidi() and timestamp
+        this.messages.unshift(m);
     }
 
 /*

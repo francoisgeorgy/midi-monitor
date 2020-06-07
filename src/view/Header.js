@@ -25,11 +25,15 @@ class Header extends React.Component {
 
         return (
             <Fragment>
+{/*
                 <div className="pre-header">
                     <a href="https://sysex.io/">sysex.io</a>
                 </div>
+*/}
                 <div className="header">
-                    <Popup trigger={<div className="header-app-name">MIDI Monitor {process.env.REACT_APP_VERSION}</div>} modal closeOnDocumentClick>
+                    <div className="header-app-name">MIDI Monitor {process.env.REACT_APP_VERSION} by <a href="https://studiocode.dev/" target="_blank">StudioCode.dev</a></div>
+{/*
+                    <Popup trigger={<div className="header-app-name">MIDI Monitor {process.env.REACT_APP_VERSION} by <a href="https://studiocode.dev/" target="_blank">StudioCode.dev</a></div>} modal closeOnDocumentClick>
                         <div className="about">
                             <div className="about-title">MIDI Monitor {process.env.REACT_APP_VERSION}</div>
                             <div>Coding by <a href="https://sysex.io/" target="_blank" rel="noopener noreferrer">Fran&ccedil;ois Georgy</a></div>
@@ -49,14 +53,17 @@ class Header extends React.Component {
                             </div>
                         </div>
                     </Popup>
+*/}
 
 {/*
                     <button className="btn btn-large btn-primary" onClick={this.help}
                             title="Open a popup with the some help information.">Help</button>
 */}
 
+{/*
                     <div>TODO: display direction</div>
                     <div>TODO: global filter</div>
+*/}
 
                     <div className="spacer"> </div>
 
