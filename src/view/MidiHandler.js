@@ -42,7 +42,7 @@ class MidiHandler extends React.Component {
 
             if (port.hasListener(RECEIVE_MSG_TYPES, 'all', this.handleMidiInputEvent)) {
 
-                console.warn(`Midi.connectInput: listener already connected`);
+                if (global.dev) console.warn(`Midi.connectInput: listener already connected`);
 
             } else {
                 if (global.dev) console.log(`Midi.connectInput: add listener for all channels`);
@@ -115,14 +115,14 @@ class MidiHandler extends React.Component {
     };
 
     registerInput = (port) => {
-        console.log("registerInput", port.id);
+        if (global.dev) console.log("registerInput", port.id);
         if (this.props.appState.addInput(port)) {
             this.autoConnectInput(port);
         }
     };
 
     unregisterInput = (port_id) => {
-        console.log("unregisterInput", port_id);
+        if (global.dev) console.log("unregisterInput", port_id);
         this.props.appState.removeInput(port_id);
     };
 

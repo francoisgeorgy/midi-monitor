@@ -21,6 +21,16 @@
 }
 */
 
+.warning-alpha {
+    padding: 5px 10px;
+    background-color: #ff7621;
+    color: #000;
+}
+
+.space-right {
+    margin-right: 5px;
+}
+
 .left-space {
     margin-left: 5px;
 }
@@ -32,6 +42,10 @@
 .warning {
     font-size: 12px;
     color: red;
+}
+
+.bold {
+    font-weight: bold;
 }
 
 label {

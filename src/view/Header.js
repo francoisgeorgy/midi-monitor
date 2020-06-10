@@ -31,8 +31,23 @@ class Header extends React.Component {
                 </div>
 */}
                 <div className="header">
-                    <div className="header-app-name">MIDI Monitor {process.env.REACT_APP_VERSION} by <a href="https://studiocode.dev/" target="_blank">StudioCode.dev</a></div>
+                    <div className="keep-last">
+                        Keep the last <input type="text" size="4"
+                                             value={this.props.appState.queue_size}
+                                             onChange={(e) => this.props.appState.queue_size = parseInt(e.target.value, 10)}/> messages.
+                        {/*<input type="range" min="1" max="100"onChange={(e) => this.props.appState.queue_size = parseInt(e.target.value, 10)}/>*/}
+
+                    </div>
+
+                    <button onClick={this.clearMessages}>CLEAR ALL</button>
+
+                    <div className="about">
+                        <span className="bold">MIDI Monitor {process.env.REACT_APP_VERSION}</span>
+                        &nbsp;by&nbsp;<a href="https://studiocode.dev" target="_blank" rel="noopener noreferrer">StudioCode.dev</a>
+                    </div>
+
 {/*
+                    <div className="header-app-name">MIDI Monitor {process.env.REACT_APP_VERSION} by <a href="https://studiocode.dev/" target="_blank">StudioCode.dev</a></div>
                     <Popup trigger={<div className="header-app-name">MIDI Monitor {process.env.REACT_APP_VERSION} by <a href="https://studiocode.dev/" target="_blank">StudioCode.dev</a></div>} modal closeOnDocumentClick>
                         <div className="about">
                             <div className="about-title">MIDI Monitor {process.env.REACT_APP_VERSION}</div>
@@ -53,30 +68,13 @@ class Header extends React.Component {
                             </div>
                         </div>
                     </Popup>
-*/}
 
-{/*
                     <button className="btn btn-large btn-primary" onClick={this.help}
                             title="Open a popup with the some help information.">Help</button>
-*/}
 
-{/*
                     <div>TODO: display direction</div>
                     <div>TODO: global filter</div>
 */}
-
-                    <div className="spacer"> </div>
-
-                    <div className="keep-last">
-                        Keep the last <input type="text" size="4"
-                                             value={this.props.appState.queue_size}
-                                             onChange={(e) => this.props.appState.queue_size = parseInt(e.target.value, 10)}/> messages.
-                        {/*<input type="range" min="1" max="100"onChange={(e) => this.props.appState.queue_size = parseInt(e.target.value, 10)}/>*/}
-
-                    </div>
-
-                    <button onClick={this.clearMessages}>CLEAR ALL</button>
-
                 </div>
             </Fragment>
         );
