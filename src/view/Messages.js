@@ -122,11 +122,11 @@ class Messages extends React.Component {
                     {/*<td className="ra">{m.timestamp.toFixed(3)}</td>*/}
                     <td className="midi-time ra">{m.time_delta}</td>
                     <td className="nw">{m.source}</td>
-                    <td className="data">{m.raw_hex}</td>
-                    <td className="data">{m.raw_dec}</td>
+                    <td className="data" dangerouslySetInnerHTML={{__html: m.raw_hex}}/>
+                    <td className="data" dangerouslySetInnerHTML={{__html: m.raw_dec}}/>
                     <td className="data-txt nw">{m.type}</td>
-                    <td className="data midi-ch">{m.channel}</td>
-                    <td className="data data-byte">{m.infos}</td>
+                    <td className="midi-ch">{m.channel}</td>
+                    <td className="data-byte">{m.infos}</td>
                     {/*<td className="data data-byte">{m.data1} {m.data2}</td>*/}
                     {/*<td className="data data-byte">{m.data2}</td>*/}
                     {/* m.sysex &&

@@ -15,14 +15,42 @@ export const h = v => {
 
 export const d = v => {
     // noinspection JSCheckFunctionSignatures
-    return (v === null || v === undefined) ? "" : padZero(v.toString(10).toUpperCase(), 2);
+    return (v === null || v === undefined) ? "" : padZero(v.toString(10).toUpperCase(), 3);
 };
 
 // hex string
 export const hs = data => (data === null || data === undefined) ? "" : (Array.from(data).map(n => h(n))).join(" ");    // Array.from() is necessary to get a non-typed array
 
+export const hsbr = (data, cols= 8, sepcol = '<br>', sep = '&nbsp;') => {
+    if (data === null || data === undefined) return "";
+    const a = Array.from(data).map(n => h(n));  // Array.from() is necessary to get a non-typed array
+    return a.reduce((acc, v, i) => {
+        if (i === 0) {
+            return v;
+        } else if (i % cols) {
+            return acc + sep + v;
+        } else {
+            return acc + sepcol + v;
+        }
+    }, '');
+}
+
 // dec string
 export const ds = data => (data === null || data === undefined) ? "" : (Array.from(data).map(n => d(n))).join(" ");    // Array.from() is necessary to get a non-typed array
+
+export const dsbr = (data, cols= 8, sepcol = '<br>', sep = '&nbsp;') => {
+    if (data === null || data === undefined) return "";
+    const a = Array.from(data).map(n => d(n));  // Array.from() is necessary to get a non-typed array
+    return a.reduce((acc, v, i) => {
+        if (i === 0) {
+            return v;
+        } else if (i % cols) {
+            return acc + sep + v;
+        } else {
+            return acc + sepcol + v;
+        }
+    }, '');
+}
 
 // hex string compact
 export const hsc = data => (data === null || data === undefined) ? "" : (Array.from(data).map(n => h(n))).join('');    // Array.from() is necessary to get a non-typed array

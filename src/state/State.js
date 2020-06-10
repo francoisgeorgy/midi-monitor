@@ -1,6 +1,6 @@
 import {decorate, observable} from 'mobx';
 import parseMidi from "parse-midi";
-import {ds, hs} from "../utils/hexstring";
+import {ds, dsbr, hs, hsbr} from "../utils/hexstring";
 
 const MIDI_CONSOLE_SIZE = 100;
 
@@ -133,8 +133,8 @@ class AppState {
         // const delta = m.timedelta = last_timestamp === 0 ? 0 : (msg.timestamp - last_timestamp);
         const delta = m.timedelta = last_timestamp === 0 ? 0 : (m.timestamp - last_timestamp);
         m.time_delta = delta.toFixed(2);
-        m.raw_hex = hs(m.data);
-        m.raw_dec = ds(m.data);
+        m.raw_hex = hsbr(m.data);
+        m.raw_dec = dsbr(m.data);
         m.infos = '';
         // m.infos = hs(m.data);
 
