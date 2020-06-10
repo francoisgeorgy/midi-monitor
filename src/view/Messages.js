@@ -104,7 +104,7 @@ class Messages extends React.Component {
                     <th>raw data (dec)</th>
                     <th>msg type</th>
                     <th className="midi-ch">ch.</th>
-                    <th>infos</th>
+                    <th>decoded message</th>
                     {/*<th>data2</th>*/}
                 </tr>
                 <tr>
