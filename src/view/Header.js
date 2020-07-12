@@ -1,7 +1,6 @@
 import React, {Fragment} from "react";
 import {inject, observer} from "mobx-react";
 import "./Header.css";
-import Popup from "reactjs-popup";
 
 class Header extends React.Component {
 
@@ -39,7 +38,17 @@ class Header extends React.Component {
 
                     </div>
 
-                    <button onClick={this.clearMessages}>CLEAR ALL</button>
+                    <div>
+                        Middle C (60) octave:
+                        <select value={this.props.appState.octaveMiddleC} onChange={(e) => this.props.appState.setOctaveMiddleC(parseInt(e.target.value, 10))}>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                            <option value={5}>5</option>
+                        </select>
+                    </div>
+
+                    <button className="clear-button" onClick={this.clearMessages}>CLEAR ALL</button>
 
                     <div className="about">
                         <span className="bold">MIDI Monitor {process.env.REACT_APP_VERSION}</span>

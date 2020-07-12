@@ -44,7 +44,10 @@ th.filter input.active {
 
 table th.midi-ch,
 table td.midi-ch {
-    min-width: 2vw;
+    /*min-width: 2vw;*/
+    width: 3rem!important;
+    min-width: 3rem!important;
+    max-width: 3rem!important;
 }
 
 .ra {

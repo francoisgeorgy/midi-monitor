@@ -104,11 +104,11 @@ class Messages extends React.Component {
                     <th>source</th>
                     <th>raw data (hex)</th>
                     <th>raw data (dec)</th>
-                    <th>msg type</th>
                     <th className="midi-ch">ch.</th>
-                    <th>note</th>
-                    <th>CC</th>
-                    <th>other</th>
+                    <th>message</th>
+                    {/*<th>note</th>*/}
+                    {/*<th>CC</th>*/}
+                    {/*<th>other</th>*/}
                     {/*<th>data2</th>*/}
                 </tr>
                 <tr>
@@ -116,11 +116,11 @@ class Messages extends React.Component {
                     <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_SOURCE]} onChange={(e) => this.setFilter(FILTER_SOURCE, e.target.value)} /></th>
                     <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_RAW_HEX]} onChange={(e) => this.setFilter(FILTER_RAW_HEX, e.target.value)} /></th>
                     <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_RAW_DEC]} onChange={(e) => this.setFilter(FILTER_RAW_DEC, e.target.value)} /></th>
+                    <th className="filter midi-ch"></th>
                     <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_MSG_TYPE]} onChange={(e) => this.setFilter(FILTER_MSG_TYPE, e.target.value)} /></th>
-                    <th className="filter"><input type="text" placeholder="filter"/></th>
-                    <th className="filter"><input type="text" placeholder="filter"/></th>
-                    <th className="filter"><input type="text" placeholder="filter"/></th>
-                    <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_INFOS]} onChange={(e) => this.setFilter(FILTER_INFOS, e.target.value)} /></th>
+                    {/*<th className="filter"><input type="text" placeholder="filter"/></th>*/}
+                    {/*<th className="filter"><input type="text" placeholder="filter"/></th>*/}
+                    {/*<th className="filter"><input type="text" placeholder="filter" value={f[FILTER_INFOS]} onChange={(e) => this.setFilter(FILTER_INFOS, e.target.value)} /></th>*/}
                     {/*<th className="filter"><input type="text" placeholder="filter"/></th>*/}
                 </tr>
                 {filtered && filtered.map((m, i) =>
@@ -130,11 +130,11 @@ class Messages extends React.Component {
                     <td className="nw">{m.source}</td>
                     <td className="data" dangerouslySetInnerHTML={{__html: m.raw_hex}}/>
                     <td className="data" dangerouslySetInnerHTML={{__html: m.raw_dec}}/>
-                    <td className="data-txt nw">{m.type}</td>
                     <td className="midi-ch">{m.channel}</td>
-                    <td className="data data-note">{m.info_note}</td>
-                    <td className="data data-cc">{m.info_cc}</td>
-                    <td className="data data-info">{m.info}</td>
+                    <td className="data">{m.info}</td>
+                    {/*<td className="data data-note">{m.info_note}</td>*/}
+                    {/*<td className="data data-cc">{m.info_cc}</td>*/}
+                    {/*<td className="data data-info">{m.info}</td>*/}
                     {/*<td className="data data-byte">{m.data1} {m.data2}</td>*/}
                     {/*<td className="data data-byte">{m.data2}</td>*/}
                     {/* m.sysex &&

@@ -55,6 +55,10 @@
     color: #fff;
 }
 
+.clear-button {
+    margin: 0 20px;
+}
+
 .keep-last {
     margin-right: 20px;
 }

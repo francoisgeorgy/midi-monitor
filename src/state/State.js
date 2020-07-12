@@ -1,8 +1,7 @@
 import {decorate, observable} from 'mobx';
 import parseMidi from "parse-midi";
-import {ds, dsbr, hs, hsbr} from "../utils/hexstring";
-import React from "react";
-import {NOTE_NAME} from "../utils/midiNotes";
+import {dsbr, hsbr} from "../utils/hexstring";
+import {noteNameWithOctave} from "../utils/midiNotes";
 
 const MIDI_CONSOLE_SIZE = 100;
 
@@ -12,9 +11,15 @@ class AppState {
         inputs: {}
     };
 
+    octaveMiddleC = 4;
+
     messages = [];  // messages ready for displaying, and filtering
 
     queue_size = MIDI_CONSOLE_SIZE;
+
+    setOctaveMiddleC(octave) {
+        this.octaveMiddleC = octave;
+    }
 
     addInput(port) {
         // eslint-disable-next-line
@@ -107,7 +112,7 @@ class AppState {
     }
 
     infoNote(number) {
-        return `${number.toString().padStart(3)}  ${NOTE_NAME[number]}`.padEnd(10);
+        return `${number.toString().padStart(3)}  ${noteNameWithOctave(number, this.octaveMiddleC)}`.padEnd(9);
     }
 
     appendMessageIn(msg) {
@@ -154,16 +159,16 @@ class AppState {
 
         switch (p.messageType) {
             case "noteoff":
-                m.type = "Note OFF";
-                m.data1 = p.key;
-                m.data2 = p.velocity;
-                m.info_note = `${this.infoNote(p.key)} velocity ${p.velocity}`;
+                // m.type = "Note OFF";
+                // m.data1 = p.key;
+                // m.data2 = p.velocity;
+                m.info = `Note OFF  ${this.infoNote(p.key)} velocity ${p.velocity}`;
                 break;
             case "noteon":
-                m.type = "Note ON";
-                m.data1 = p.key;
-                m.data2 = p.velocity;
-                m.info_note = `${this.infoNote(p.key)} velocity ${p.velocity}`;
+                // m.type = "Note ON";
+                // m.data1 = p.key;
+                // m.data2 = p.velocity;
+                m.info = `Note ON   ${this.infoNote(p.key)} velocity ${p.velocity}`;
                 break;
             case "keypressure":
                 m.type = "Key Pressure";
@@ -172,11 +177,12 @@ class AppState {
                 m.info = `note ${this.infoNote(p.key)} pressure ${p.pressure}`;
                 break;
             case "controlchange":
-                m.type = "CC";
+                // m.type = "CC";
                 // m.data1 = `${p.controlNumber} ${p.controlFunction || ''}`;
-                m.data1 = `${p.controlNumber}`;
-                m.data2 = p.controlValue === 0 ? '0' : (p.controlValue || '');
-                m.info_cc = `#${p.controlNumber} value ${m.data2}`;
+                // m.data1 = `${p.controlNumber}`;
+                // m.data2 = p.controlValue === 0 ? '0' : (p.controlValue || '');
+                const cc = `#${p.controlNumber}`
+                m.info = `CC${cc.padStart(4)}  value ${(p.controlValue || 0).toString().padStart(3)}`;
                 break;
             case "channelmodechange":
                 m.type = "Channel Mode Change";
@@ -187,19 +193,19 @@ class AppState {
                 m.type = "PC";
                 m.data1 = p.program === 0 ? '0' : (p.program || '');
                 m.data2 = '';
-                m.info = `program ${m.data1}`;
+                m.info = `PC program ${m.data1}`;
                 break;
             case "channelpressure":
-                m.type = "Channel Pressure";
-                m.data1 = p.pressure;
-                m.data2 = '';
-                m.info = `channel ${m.channel} pressure ${p.pressure}`;
+                // m.type = "Channel Pressure";
+                // m.data1 = p.pressure;
+                // m.data2 = '';
+                m.info = `Channel Pressure channel ${m.channel} pressure ${p.pressure}`;
                 break;
             case "pitchbendchange":
-                m.type = "Pitchbend Change";
-                m.data1 = p.pitchBend;
-                m.data2 = p.pitchBendMultiplier;
-                m.info = `${m.data1.toString().padStart(6, ' ')}   ${m.data2.toFixed(2).padStart(5, ' ')}`;
+                m.info =  `Pitch Bend ${p.pitchBend.toString().padStart(6, ' ')}  ${p.pitchBendMultiplier.toFixed(2).padStart(5, ' ')}`;
+                // m.data1 = p.pitchBend;
+                // m.data2 = p.pitchBendMultiplier;
+                // m.info = `${m.data1.toString().padStart(6, ' ')}   ${m.data2.toFixed(2).padStart(5, ' ')}`;
                 // m.info = <div className="pitch-bend"><div>{m.data1}</div><div>{m.data2}</div></div>
                 break;
             default:
@@ -310,6 +316,7 @@ class AppState {
 // https://mobx.js.org/best/decorators.html
 decorate(AppState, {
     midi: observable,
+    octaveMiddleC: observable,
     messages: observable,
     queue_size: observable
     // device_ok: observable,
