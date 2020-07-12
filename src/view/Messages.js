@@ -77,6 +77,8 @@ class Messages extends React.Component {
 
         const f = this.state.filter;
 
+        //TODO: separate channel messages and global messages
+
         // TODO: case insensitive filter
         // TODO: regex filter
         const filtered =
@@ -89,7 +91,7 @@ class Messages extends React.Component {
                         (f[FILTER_TIME] === '' ? true : m.time_delta.includes(f[FILTER_TIME])) &&
                         (f[FILTER_SOURCE] === '' ? true : m.source.includes(f[FILTER_SOURCE])) &&
                         (f[FILTER_MSG_TYPE] === '' ? true : m.type.includes(f[FILTER_MSG_TYPE])) &&
-                        (f[FILTER_INFOS] === '' ? true : m.infos.includes(f[FILTER_INFOS])) &&
+                        (f[FILTER_INFOS] === '' ? true : m.info.includes(f[FILTER_INFOS])) &&
                         (f[FILTER_CH] === '' ? true : m.channel.includes(f[FILTER_CH]));
                     return b;
                 });
@@ -104,7 +106,9 @@ class Messages extends React.Component {
                     <th>raw data (dec)</th>
                     <th>msg type</th>
                     <th className="midi-ch">ch.</th>
-                    <th>decoded message</th>
+                    <th>note</th>
+                    <th>CC</th>
+                    <th>other</th>
                     {/*<th>data2</th>*/}
                 </tr>
                 <tr>
@@ -113,7 +117,9 @@ class Messages extends React.Component {
                     <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_RAW_HEX]} onChange={(e) => this.setFilter(FILTER_RAW_HEX, e.target.value)} /></th>
                     <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_RAW_DEC]} onChange={(e) => this.setFilter(FILTER_RAW_DEC, e.target.value)} /></th>
                     <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_MSG_TYPE]} onChange={(e) => this.setFilter(FILTER_MSG_TYPE, e.target.value)} /></th>
-                    <th className="filter midi-ch"><input type="text" placeholder="filter"/></th>
+                    <th className="filter"><input type="text" placeholder="filter"/></th>
+                    <th className="filter"><input type="text" placeholder="filter"/></th>
+                    <th className="filter"><input type="text" placeholder="filter"/></th>
                     <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_INFOS]} onChange={(e) => this.setFilter(FILTER_INFOS, e.target.value)} /></th>
                     {/*<th className="filter"><input type="text" placeholder="filter"/></th>*/}
                 </tr>
@@ -126,7 +132,9 @@ class Messages extends React.Component {
                     <td className="data" dangerouslySetInnerHTML={{__html: m.raw_dec}}/>
                     <td className="data-txt nw">{m.type}</td>
                     <td className="midi-ch">{m.channel}</td>
-                    <td className="data-byte">{m.infos}</td>
+                    <td className="data data-note">{m.info_note}</td>
+                    <td className="data data-cc">{m.info_cc}</td>
+                    <td className="data data-info">{m.info}</td>
                     {/*<td className="data data-byte">{m.data1} {m.data2}</td>*/}
                     {/*<td className="data data-byte">{m.data2}</td>*/}
                     {/* m.sysex &&

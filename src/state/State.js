@@ -1,6 +1,8 @@
 import {decorate, observable} from 'mobx';
 import parseMidi from "parse-midi";
 import {ds, dsbr, hs, hsbr} from "../utils/hexstring";
+import React from "react";
+import {NOTE_NAME} from "../utils/midiNotes";
 
 const MIDI_CONSOLE_SIZE = 100;
 
@@ -104,6 +106,10 @@ class AppState {
             });
     }
 
+    infoNote(number) {
+        return `${number.toString().padStart(3)}  ${NOTE_NAME[number]}`.padEnd(10);
+    }
+
     appendMessageIn(msg) {
 
         if (this.midi.inputs[msg.target.id]) {
@@ -135,8 +141,10 @@ class AppState {
         m.time_delta = delta.toFixed(2);
         m.raw_hex = hsbr(m.data);
         m.raw_dec = dsbr(m.data);
-        m.infos = '';
-        // m.infos = hs(m.data);
+        m.info_note = '';
+        m.info_cc = '';
+        m.info = '';
+        // m.info = hs(m.data);
 
         const p = parseMidi(msg.data);
 
@@ -149,26 +157,26 @@ class AppState {
                 m.type = "Note OFF";
                 m.data1 = p.key;
                 m.data2 = p.velocity;
-                m.infos = `note ${p.key} velocity ${p.velocity}`;
+                m.info_note = `${this.infoNote(p.key)} velocity ${p.velocity}`;
                 break;
             case "noteon":
                 m.type = "Note ON";
                 m.data1 = p.key;
                 m.data2 = p.velocity;
-                m.infos = `note ${p.key} velocity ${p.velocity}`;
+                m.info_note = `${this.infoNote(p.key)} velocity ${p.velocity}`;
                 break;
             case "keypressure":
                 m.type = "Key Pressure";
                 m.data1 = p.key;
                 m.data2 = p.pressure;
-                m.infos = `note ${p.key} pressure ${p.pressure}`;
+                m.info = `note ${this.infoNote(p.key)} pressure ${p.pressure}`;
                 break;
             case "controlchange":
                 m.type = "CC";
                 // m.data1 = `${p.controlNumber} ${p.controlFunction || ''}`;
                 m.data1 = `${p.controlNumber}`;
                 m.data2 = p.controlValue === 0 ? '0' : (p.controlValue || '');
-                m.infos = `controller ${p.controlNumber} value ${m.data2}`;
+                m.info_cc = `#${p.controlNumber} value ${m.data2}`;
                 break;
             case "channelmodechange":
                 m.type = "Channel Mode Change";
@@ -179,18 +187,20 @@ class AppState {
                 m.type = "PC";
                 m.data1 = p.program === 0 ? '0' : (p.program || '');
                 m.data2 = '';
-                m.infos = `program ${m.data1}`;
+                m.info = `program ${m.data1}`;
                 break;
             case "channelpressure":
                 m.type = "Channel Pressure";
                 m.data1 = p.pressure;
                 m.data2 = '';
-                m.infos = `channel ${m.channel} pressure ${p.pressure}`;
+                m.info = `channel ${m.channel} pressure ${p.pressure}`;
                 break;
             case "pitchbendchange":
                 m.type = "Pitchbend Change";
                 m.data1 = p.pitchBend;
                 m.data2 = p.pitchBendMultiplier;
+                m.info = `${m.data1.toString().padStart(6, ' ')}   ${m.data2.toFixed(2).padStart(5, ' ')}`;
+                // m.info = <div className="pitch-bend"><div>{m.data1}</div><div>{m.data2}</div></div>
                 break;
             default:
 

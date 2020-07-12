@@ -104,3 +104,10 @@ input[type="text"] {
     padding: 0 2px;
 }
 
+.pitch-bend {
+    display: flex;
+}
+
+.pitch-bend > div:first-child {
+    width: 100px;
+}
