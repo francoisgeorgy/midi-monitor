@@ -90,9 +90,9 @@ class Messages extends React.Component {
                         (f[FILTER_RAW_DEC] === '' ? true : m.raw_dec.includes(f[FILTER_RAW_DEC])) &&
                         (f[FILTER_TIME] === '' ? true : m.time_delta.includes(f[FILTER_TIME])) &&
                         (f[FILTER_SOURCE] === '' ? true : m.source.includes(f[FILTER_SOURCE])) &&
-                        (f[FILTER_MSG_TYPE] === '' ? true : m.type.includes(f[FILTER_MSG_TYPE])) &&
-                        (f[FILTER_INFOS] === '' ? true : m.info.includes(f[FILTER_INFOS])) &&
-                        (f[FILTER_CH] === '' ? true : m.channel.includes(f[FILTER_CH]));
+                        (f[FILTER_MSG_TYPE] === '' ? true : m.type.includes(f[FILTER_MSG_TYPE]));   // &&
+                        // (f[FILTER_INFOS] === '' ? true : m.info.includes(f[FILTER_INFOS])) &&
+                        // (f[FILTER_CH] === '' ? true : m.channel.includes(f[FILTER_CH]));
                     return b;
                 });
 
@@ -111,6 +111,7 @@ class Messages extends React.Component {
                     {/*<th>other</th>*/}
                     {/*<th>data2</th>*/}
                 </tr>
+{/*
                 <tr>
                     <th className="filter midi-time"><input type="text" placeholder="filter" value={f[FILTER_TIME]} onChange={(e) => this.setFilter(FILTER_TIME, e.target.value)} /></th>
                     <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_SOURCE]} onChange={(e) => this.setFilter(FILTER_SOURCE, e.target.value)} /></th>
@@ -118,11 +119,8 @@ class Messages extends React.Component {
                     <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_RAW_DEC]} onChange={(e) => this.setFilter(FILTER_RAW_DEC, e.target.value)} /></th>
                     <th className="filter midi-ch"></th>
                     <th className="filter"><input type="text" placeholder="filter" value={f[FILTER_MSG_TYPE]} onChange={(e) => this.setFilter(FILTER_MSG_TYPE, e.target.value)} /></th>
-                    {/*<th className="filter"><input type="text" placeholder="filter"/></th>*/}
-                    {/*<th className="filter"><input type="text" placeholder="filter"/></th>*/}
-                    {/*<th className="filter"><input type="text" placeholder="filter" value={f[FILTER_INFOS]} onChange={(e) => this.setFilter(FILTER_INFOS, e.target.value)} /></th>*/}
-                    {/*<th className="filter"><input type="text" placeholder="filter"/></th>*/}
                 </tr>
+*/}
                 {filtered && filtered.map((m, i) =>
                 <tr key={i}>
                     {/*<td className="ra">{m.timestamp.toFixed(3)}</td>*/}

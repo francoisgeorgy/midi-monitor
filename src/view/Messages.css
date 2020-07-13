@@ -24,10 +24,10 @@
 
 .data {
     /*font-family: monospace;*/
-    font-family: 'Roboto Mono', monospace;
+    /*font-family: 'Source Code Pro', monospace;*/
+    font-family: 'B612 Mono', monospace;
     white-space: pre;
 }
-
 
 th.filter input {
     width: calc(100% - 6px);

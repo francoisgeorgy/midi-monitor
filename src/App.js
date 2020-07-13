@@ -16,9 +16,11 @@ class App extends Component {
             <Provider appState={appState}>
                 <Fragment>
                     {/*<div className="top">Fixed Top</div>*/}
+{/*
                     <div className={"warning-alpha"}>
                         Application under development. This is a beta version.
                     </div>
+*/}
                     <Header />
                     <div className="app">
                         <div className="left">
