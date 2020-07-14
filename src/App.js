@@ -9,18 +9,10 @@ import './App.css';
 class App extends Component {
 
     render() {
-
         if (global.dev) console.info(process.env.REACT_APP_NAME, process.env.REACT_APP_VERSION);
-
         return (
             <Provider appState={appState}>
                 <Fragment>
-                    {/*<div className="top">Fixed Top</div>*/}
-{/*
-                    <div className={"warning-alpha"}>
-                        Application under development. This is a beta version.
-                    </div>
-*/}
                     <Header />
                     <div className="app">
                         <div className="left">

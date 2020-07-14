@@ -102,8 +102,8 @@ class Messages extends React.Component {
                 <tr>
                     <th className="midi-time">time delta (ms)</th>
                     <th>source</th>
-                    <th>raw data (hex)</th>
-                    <th>raw data (dec)</th>
+                    <th>data (hex)</th>
+                    <th>data (dec)</th>
                     <th className="midi-ch">ch.</th>
                     <th>message</th>
                     {/*<th>note</th>*/}

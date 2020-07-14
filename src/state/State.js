@@ -171,10 +171,10 @@ class AppState {
                 m.info = `Note ON   ${this.infoNote(p.key)} velocity ${p.velocity}`;
                 break;
             case "keypressure":
-                m.type = "Key Pressure";
-                m.data1 = p.key;
-                m.data2 = p.pressure;
-                m.info = `note ${this.infoNote(p.key)} pressure ${p.pressure}`;
+                // m.type = "Key Pressure";
+                // m.data1 = p.key;
+                // m.data2 = p.pressure;
+                m.info = `Key Pressure note ${this.infoNote(p.key)} pressure ${p.pressure}`;
                 break;
             case "controlchange":
                 // m.type = "CC";
@@ -185,21 +185,22 @@ class AppState {
                 m.info = `CC${cc.padStart(4)}  value ${(p.controlValue || 0).toString().padStart(3)}`;
                 break;
             case "channelmodechange":
-                m.type = "Channel Mode Change";
-                m.data1 = `${p.controlNumber} ${p.channelModeMessage}`;
-                m.data2 = p.controlValue === 0 ? '0' : (p.controlValue || '');
+                // m.type = "Channel Mode Change";
+                // m.data1 = `${p.controlNumber} ${p.channelModeMessage}`;
+                // m.data2 = p.controlValue === 0 ? '0' : (p.controlValue || '');
+                m.info = `Channel Mode Change ${p.controlNumber} ${p.channelModeMessage}`;
                 break;
             case "programchange":
-                m.type = "PC";
-                m.data1 = p.program === 0 ? '0' : (p.program || '');
-                m.data2 = '';
-                m.info = `PC program ${m.data1}`;
+                // m.type = "PC";
+                // m.data1 = p.program === 0 ? '0' : (p.program || '');
+                // m.data2 = '';
+                m.info = `Program Change ${m.data1}`;
                 break;
             case "channelpressure":
                 // m.type = "Channel Pressure";
                 // m.data1 = p.pressure;
                 // m.data2 = '';
-                m.info = `Channel Pressure channel ${m.channel} pressure ${p.pressure}`;
+                m.info = `Channel Pressure ${p.pressure}`;
                 break;
             case "pitchbendchange":
                 m.info =  `Pitch Bend ${p.pitchBend.toString().padStart(6, ' ')}  ${p.pitchBendMultiplier.toFixed(2).padStart(5, ' ')}`;
