@@ -1,6 +1,6 @@
 {
     "name": "midi-monitor",
-    "version": "0.6.3",
+    "version": "0.6.4",
     "repository": "https://github.com/francoisgeorgy/midi-monitor.git",
     "author": "François Georgy <francois.georgy@gmail.com>",
     "license": "GPL-3.0-or-later",

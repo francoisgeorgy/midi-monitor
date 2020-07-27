@@ -183,6 +183,7 @@ class AppState {
                 // m.data2 = p.controlValue === 0 ? '0' : (p.controlValue || '');
                 const cc = `#${p.controlNumber}`
                 m.info = `CC${cc.padStart(4)}  value ${(p.controlValue || 0).toString().padStart(3)}`;
+                // m.info = `CC${cc.padStart(4)}  value ${p.controlValue || 0}`;
                 break;
             case "channelmodechange":
                 // m.type = "Channel Mode Change";
@@ -194,7 +195,7 @@ class AppState {
                 // m.type = "PC";
                 // m.data1 = p.program === 0 ? '0' : (p.program || '');
                 // m.data2 = '';
-                m.info = `Program Change ${m.data1}`;
+                m.info = `Program Change ${p.program === 0 ? '0' : (p.program || '')}`;
                 break;
             case "channelpressure":
                 // m.type = "Channel Pressure";
