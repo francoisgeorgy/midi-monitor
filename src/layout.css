@@ -46,7 +46,12 @@ body,
 
 .left .title {
     font-weight: bold;
+    margin-top: 0.5rem;
     margin-bottom: 0.25rem;
+}
+
+.left .title:first-child {
+    /*margin-top: 0;*/
 }
 
 .right {

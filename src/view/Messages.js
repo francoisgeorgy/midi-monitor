@@ -77,6 +77,8 @@ class Messages extends React.Component {
 
         const f = this.state.filter;
 
+        const S = this.props.appState;
+
         //TODO: separate channel messages and global messages
 
         // TODO: case insensitive filter
@@ -100,10 +102,10 @@ class Messages extends React.Component {
             <table>
                 <tbody>
                 <tr>
-                    <th className="midi-time">time delta (ms)</th>
-                    <th>source</th>
-                    <th>data (hex)</th>
-                    <th>data (dec)</th>
+                    {S.show.time && <th className="midi-time">time delta (ms)</th>}
+                    {S.show.source && <th>source</th>}
+                    {S.show.dataHex && <th>data (hex)</th>}
+                    {S.show.dataDec && <th>data (dec)</th>}
                     <th className="midi-ch">ch.</th>
                     <th>message</th>
                     {/*<th>note</th>*/}
@@ -124,10 +126,10 @@ class Messages extends React.Component {
                 {filtered && filtered.map((m, i) =>
                 <tr key={i}>
                     {/*<td className="ra">{m.timestamp.toFixed(3)}</td>*/}
-                    <td className="midi-time ra">{m.time_delta}</td>
-                    <td className="nw">{m.source}</td>
-                    <td className="data" dangerouslySetInnerHTML={{__html: m.raw_hex}}/>
-                    <td className="data" dangerouslySetInnerHTML={{__html: m.raw_dec}}/>
+                    {S.show.time && <td className="midi-time ra">{m.time_delta}</td>}
+                    {S.show.source && <td className="nw">{m.source}</td>}
+                    {S.show.dataHex && <td className="data" dangerouslySetInnerHTML={{__html: m.raw_hex}}/>}
+                    {S.show.dataDec && <td className="data" dangerouslySetInnerHTML={{__html: m.raw_dec}}/>}
                     <td className="midi-ch">{m.channel}</td>
                     <td className="data">{m.info}</td>
                     {/*<td className="data data-note">{m.info_note}</td>*/}

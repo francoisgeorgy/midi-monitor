@@ -1,6 +1,7 @@
 .channels-toggles {
     display: flex;
     /*justify-content: right;*/
+    align-items: baseline;
 }
 
 .channels-toggles > div:first-child {
@@ -18,7 +19,7 @@
 }
 
 .channels {
-    margin-top: 0.25rem;
+    /*margin-top: 0.25rem;*/
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 5px 4px;

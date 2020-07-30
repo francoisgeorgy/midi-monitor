@@ -7,51 +7,48 @@ class Filters extends React.Component {
 
     render() {
 
-        const F = this.props.appState.filters;
+        const F = this.props.appState.show;
 
         return (
             <Fragment>
                 <div className="filters">
+                    <div>
+                        Show Hide filters
+                    </div>
                     <div className="title">
-                        Show:
+                        Columns:
                     </div>
                     <div className="filters-grid">
                         <div>
                             <label>
-                                <input type="checkbox" checked={F.realtime}
-                                       onChange={() => F.realtime = !F.realtime} />Time
+                                <input type="checkbox" checked={F.time} onChange={() => this.props.appState.toggleShowOption('time')} />Time
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="checkbox" checked={F.realtime}
-                                       onChange={() => F.realtime = !F.realtime} />Source
+                                <input type="checkbox" checked={F.source} onChange={() => this.props.appState.toggleShowOption('source')} />Source
                             </label>
                         </div>
                         <div>
-                            <label>
-                                <input type="checkbox" checked={F.realtime}
-                                       onChange={() => F.realtime = !F.realtime} />Data hex dec
-                            </label>
+                            Data
+                            <input type="checkbox" checked={F.dataHex} onChange={() => this.props.appState.toggleShowOption('dataHex')} />hex
+                            <input type="checkbox" checked={F.dataDec} onChange={() => this.props.appState.toggleShowOption('dataDec')} />dec
                         </div>
                     </div>
-                    <div className="xtitle">
-                        messages:
+                    <div className="title">
+                        Messages:
                     </div>
                     <div className="filters-grid">
                         <div>
                             <label>
-                                <input type="checkbox" checked={F.realtime}
-                                       onChange={() => F.realtime = !F.realtime} />Real-time
+                                <input type="checkbox" checked={F.realtime} onChange={() => this.props.appState.toggleShowOption('realtime')} />Real-time
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="checkbox" checked={F.sysex}
-                                       onChange={() => F.sysex = !F.sysex} />System exclusive
+                                <input type="checkbox" checked={F.sysex} onChange={() => this.props.appState.toggleShowOption('sysex')} />System exclusive
                             </label>
                         </div>
-
                         <Channels />
                     </div>
                 </div>

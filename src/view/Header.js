@@ -16,7 +16,7 @@ class Header extends React.Component {
 
                     <div className="keep-last">
                         Keep the last <input type="text" size="4" value={this.props.appState.queue_size}
-                                             onChange={(e) => this.props.appState.queue_size = parseInt(e.target.value, 10)}/> messages.
+                                             onChange={(e) => this.props.appState.setQueueSize(parseInt(e.target.value, 10))}/> messages.
                     </div>
 
                     <div>

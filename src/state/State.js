@@ -2,8 +2,7 @@ import {decorate, observable} from 'mobx';
 import parseMidi from "parse-midi";
 import {dsbr, hsbr} from "../utils/hexstring";
 import {noteNameWithOctave} from "../utils/midiNotes";
-
-const MIDI_CONSOLE_SIZE = 100;
+import {DEFAULT_PREFERENCES, loadPreferences, savePreferences} from "../utils/preferences";
 
 class AppState {
 
@@ -11,20 +10,66 @@ class AppState {
         inputs: {}
     };
 
-    filters = {
-        realtime: true,
-        sysex: true,
-        channels: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true]
-    };
-
-    octaveMiddleC = 4;
+    // show = {
+    //     time: true,
+    //     source: true,
+    //     dataDec: true,
+    //     dataHex: true,
+    //     realtime: true,
+    //     sysex: true,
+    //     channels: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true]
+    // };
+    show = DEFAULT_PREFERENCES.show;
+    octaveMiddleC = DEFAULT_PREFERENCES.octaveMiddleC;
+    queue_size = DEFAULT_PREFERENCES.queue_size;
 
     messages = [];  // messages ready for displaying, and filtering
 
-    queue_size = MIDI_CONSOLE_SIZE;
+    constructor() {
+        // console.log("AppState constructor", this.octaveMiddleC);
+        const p = loadPreferences();
+        this.show = p.show;
+        this.octaveMiddleC = p.octaveMiddleC;
+        this.queue_size = p.queue_size;
+        // console.log("AppState constructor, preferences=", this.octaveMiddleC, p);
+    }
+
+    setQueueSize(size) {
+        if (isNaN(size)) return;
+        this.queue_size = size;
+        savePreferences({queue_size: this.queue_size});
+    }
 
     setOctaveMiddleC(octave) {
         this.octaveMiddleC = octave;
+        savePreferences({octaveMiddleC: octave});
+    }
+
+    toggleShowOption(key) {
+        if (key in this.show) {
+            this.show[key] = !this.show[key];
+            savePreferences({show: this.show});
+        }
+    }
+
+    /**
+     *
+     * @param channel 0..15
+     */
+    toggleChannel(channel) {
+        this.show.channels[channel] = !this.show.channels[channel];
+        savePreferences({show: this.show});
+    }
+
+    selectAllChannels() {
+        for (let i=0; i < this.show.channels.length; i++) this.show.channels[i] = true;
+        savePreferences({show: this.show});
+    }
+
+    unselectAllChannels() {
+        //this.filters.channels.forEach((e, i) => {e = false});
+        for (let i=0; i < this.show.channels.length; i++) this.show.channels[i] = false;
+        savePreferences({show: this.show});
     }
 
     addInput(port) {
@@ -109,15 +154,6 @@ class AppState {
         this.midi.inputs[port_id].hidden = !this.midi.inputs[port_id].hidden;
     }
 
-    selectAllChannels() {
-        for (let i=0; i < this.filters.channels.length; i++) this.filters.channels[i] = true;
-    }
-
-    unselectAllChannels() {
-        //this.filters.channels.forEach((e, i) => {e = false});
-        for (let i=0; i < this.filters.channels.length; i++) this.filters.channels[i] = false;
-    }
-
     clearMessages() {
         this.messages = [];
         Object.keys(this.midi.inputs).forEach(
@@ -135,7 +171,7 @@ class AppState {
 
         const p = parseMidi(msg.data);
 
-        if (!this.filters.channels[p.channel - 1]) return;
+        if (!this.show.channels[p.channel - 1]) return;
 
         switch (p.messageType) {
             case "noteoff":
@@ -153,29 +189,29 @@ class AppState {
                 if (msg.data[0] === 0xF8) {
                     // m.sysex = true;
                     // m.type = "timing clock";
-                    if (!this.filters.realtime) return;
+                    if (!this.show.realtime) return;
                 } else if (msg.data[0] === 0xFA) {
                     // m.sysex = true;
                     // m.type = "start clock";
-                    if (!this.filters.realtime) return;
+                    if (!this.show.realtime) return;
                 } else if (msg.data[0] === 0xFB) {
                     // m.sysex = true;
                     // m.type = "continue clock";
-                    if (!this.filters.realtime) return;
+                    if (!this.show.realtime) return;
                 } else if (msg.data[0] === 0xFC) {
                     // m.sysex = true;
                     // m.type = "stop clock";
-                    if (!this.filters.realtime) return;
+                    if (!this.show.realtime) return;
                 } else if (msg.data[0] === 0xFE) {
                     // m.sysex = true;
                     // m.type = "active sensing";
                 } else if (msg.data[0] === 0xFF) {
                     // m.sysex = true;
                     // m.type = "system reset";
-                    if (!this.filters.sysex) return;
+                    if (!this.show.sysex) return;
                 } else if (msg.data[0] === 0xF0 && msg.data[msg.data.length-1] === 0xF7) {
                     // m.sysex = true;
-                    if (!this.filters.sysex) return;
+                    if (!this.show.sysex) return;
                     // if (m.data[1] === 0x7E && m.data[2] === 0x00 && m.data[3] === 0x06) {
                     //     m.type = "ID resp.";
                     // } else {
@@ -389,7 +425,7 @@ class AppState {
 // https://mobx.js.org/best/decorators.html
 decorate(AppState, {
     midi: observable,
-    filters: observable,
+    show: observable,
     octaveMiddleC: observable,
     messages: observable,
     queue_size: observable
