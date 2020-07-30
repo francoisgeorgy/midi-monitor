@@ -135,7 +135,7 @@ class AppState {
 
         const p = parseMidi(msg.data);
 
-        if (!this.filters.channels[p.channel]) return;
+        if (!this.filters.channels[p.channel - 1]) return;
 
         switch (p.messageType) {
             case "noteoff":

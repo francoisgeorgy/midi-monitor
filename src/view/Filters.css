@@ -15,6 +15,10 @@
     margin-top: 0.25rem;
 }
 
+.filters-grid > div:first-child {
+    margin-top: 0;
+}
+
 .filters label {
     padding: 0;
     margin: 0;

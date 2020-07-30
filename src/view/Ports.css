@@ -1,8 +1,10 @@
 
+.ports-wrapper {
+    padding: 0 10px;
+}
+
 .ports-grid {
-    /*display: flex;*/
-    /*flex-direction: row;*/
-    padding: 5px 10px;
+    /*padding: 5px 10px;*/
 }
 
 /*
@@ -18,19 +20,19 @@
     font-size: 0.85rem;
 }
 */
+
 .port {
-    border: 1px solid #5c925c;
-    /*border-radius: 5px;*/
-    /*margin-right: 10px;*/
-    margin: 5px 0;
-    /*padding: 5px 2px 2px 4px;*/
-    padding: 4px 5px;
+    /*border: 1px solid #5c925c;*/
+    max-width: 200px;
+    margin: 0 0 0.5rem 0;
+    padding: 0.5rem 5px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     /*background-color: #b8b8b8;*/
-    background-color: #c7c7c7;
-    font-size: 12px;
+    /*background-color: #c7c7c7;*/
+    background-color: #f8f8f8;
+    /*font-size: 12px;*/
     position: relative;
     cursor: pointer;
 }
@@ -44,10 +46,11 @@
 .port-name {
     font-weight: 700;
     /*margin-right: 4px;*/
-    margin: 2px 0;
+    margin: 5px 0 2px 0;
 }
 
 .port-manufacturer {
+    font-size: 0.875rem;
 }
 
 .port-options {
@@ -80,7 +83,7 @@
 .port-switch {
     position: absolute;
     right: 5px;
-    top: 5px;
+    top: 8px;
     /*margin-left: 4px;*/
 }
 
@@ -93,7 +96,8 @@
 /*}*/
 
 .port.enabled {
-    background-color: #86e086;
+    /*background-color: #86e086;*/
+    background-color: lightgreen;
     border-color: #5c925c;
 }
 

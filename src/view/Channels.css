@@ -1,21 +1,36 @@
 .channels-toggles {
     display: flex;
+    /*justify-content: right;*/
 }
 
 .channels-toggles > div:first-child {
-    margin-right: 1rem;
+    flex-grow: 1;
+}
+
+/*.channels-toggles > div.toggle:first-child {*/
+/*    margin-right: 1rem;*/
+/*}*/
+
+.channels-toggles > div.toggle {
+    margin-left: 1rem;
+    color: blue;
+    cursor: pointer;
 }
 
 .channels {
+    margin-top: 0.25rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 4px;
+    grid-gap: 5px 4px;
 }
 
 .channels > div {
-    border: 1px solid #aaa;
+    /*border: 1px solid #aaa;*/
     text-align: center;
     cursor: pointer;
+    background-color: #f8f8f8;
+    font-size: 0.875rem;
+    padding: 2px 0;
 }
 
 .channels > div.on {

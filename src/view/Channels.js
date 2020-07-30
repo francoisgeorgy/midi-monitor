@@ -4,8 +4,6 @@ import "./Channels.css";
 
 class Channels extends React.Component {
 
-
-
     render() {
 
         const F = this.props.appState.filters;
@@ -13,8 +11,9 @@ class Channels extends React.Component {
         return (
             <div>
                 <div className="channels-toggles">
-                <div onClick={() => this.props.appState.selectAllChannels()}>all</div>
-                <div onClick={() => this.props.appState.unselectAllChannels()}>none</div>
+                    <div>channels:</div>
+                    <div className="toggle" onClick={() => this.props.appState.selectAllChannels()}>all</div>
+                    <div className="toggle" onClick={() => this.props.appState.unselectAllChannels()}>none</div>
                 </div>
                 <div className="channels">
                     {F.channels.map((c, i) =>

@@ -12,22 +12,46 @@ class Filters extends React.Component {
         return (
             <Fragment>
                 <div className="filters">
-                    <div>
+                    <div className="title">
                         Show:
                     </div>
                     <div className="filters-grid">
                         <div>
                             <label>
                                 <input type="checkbox" checked={F.realtime}
-                                   onChange={() => F.realtime = !F.realtime} />Real-time
+                                       onChange={() => F.realtime = !F.realtime} />Time
                             </label>
                         </div>
                         <div>
                             <label>
-                            <input type="checkbox" checked={F.sysex}
-                                   onChange={() => F.sysex = !F.sysex} />System exclusive
+                                <input type="checkbox" checked={F.realtime}
+                                       onChange={() => F.realtime = !F.realtime} />Source
                             </label>
                         </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" checked={F.realtime}
+                                       onChange={() => F.realtime = !F.realtime} />Data hex dec
+                            </label>
+                        </div>
+                    </div>
+                    <div className="xtitle">
+                        messages:
+                    </div>
+                    <div className="filters-grid">
+                        <div>
+                            <label>
+                                <input type="checkbox" checked={F.realtime}
+                                       onChange={() => F.realtime = !F.realtime} />Real-time
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" checked={F.sysex}
+                                       onChange={() => F.sysex = !F.sysex} />System exclusive
+                            </label>
+                        </div>
+
                         <Channels />
                     </div>
                 </div>

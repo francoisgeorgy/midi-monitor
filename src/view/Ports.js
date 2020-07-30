@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Switch from "react-switch";
 import {inject, observer} from "mobx-react";
 import "./Ports.css";
@@ -27,6 +27,8 @@ class Ports extends React.Component {
 
         if (ports) {
             return (
+                <div className="ports-wrapper">
+                    <div className="title">Devices:</div>
                 <div className="ports-grid">{
                     Object.keys(ports).map(port_id => {
                         const port = ports[port_id];
@@ -64,6 +66,7 @@ class Ports extends React.Component {
                         }
                     })
                 }</div>
+                </div>
             );
         } else {
             console.log("Ports: this.props.appState.inputs is null");
