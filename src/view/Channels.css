@@ -1,0 +1,23 @@
+.channels-toggles {
+    display: flex;
+}
+
+.channels-toggles > div:first-child {
+    margin-right: 1rem;
+}
+
+.channels {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 4px;
+}
+
+.channels > div {
+    border: 1px solid #aaa;
+    text-align: center;
+    cursor: pointer;
+}
+
+.channels > div.on {
+    background-color: lightgreen;
+}

@@ -5,6 +5,7 @@ import MidiHandler from "./view/MidiHandler";
 import Header from "./view/Header";
 import Messages from "./view/Messages";
 import './App.css';
+import Filters from "./view/Filters";
 
 class App extends Component {
 
@@ -16,6 +17,7 @@ class App extends Component {
                     <Header />
                     <div className="app">
                         <div className="left">
+                            <Filters />
                             <MidiHandler />
                         </div>
                         <div className="right">

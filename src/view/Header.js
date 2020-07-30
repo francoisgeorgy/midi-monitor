@@ -29,7 +29,7 @@ class Header extends React.Component {
                         </select>
                     </div>
 
-                    <button className="clear-button" onClick={this.clearMessages}>CLEAR ALL</button>
+                    <button className="clear-button" onClick={this.clearMessages}>CLEAR</button>
 
                     <a href="https://studiocode.dev/applications/midi-monitor/" target="_blank">Documentation</a>
 

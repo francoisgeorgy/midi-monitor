@@ -11,6 +11,12 @@ class AppState {
         inputs: {}
     };
 
+    filters = {
+        realtime: true,
+        sysex: true,
+        channels: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true]
+    };
+
     octaveMiddleC = 4;
 
     messages = [];  // messages ready for displaying, and filtering
@@ -103,6 +109,15 @@ class AppState {
         this.midi.inputs[port_id].hidden = !this.midi.inputs[port_id].hidden;
     }
 
+    selectAllChannels() {
+        for (let i=0; i < this.filters.channels.length; i++) this.filters.channels[i] = true;
+    }
+
+    unselectAllChannels() {
+        //this.filters.channels.forEach((e, i) => {e = false});
+        for (let i=0; i < this.filters.channels.length; i++) this.filters.channels[i] = false;
+    }
+
     clearMessages() {
         this.messages = [];
         Object.keys(this.midi.inputs).forEach(
@@ -116,6 +131,62 @@ class AppState {
     }
 
     appendMessageIn(msg) {
+
+
+        const p = parseMidi(msg.data);
+
+        if (!this.filters.channels[p.channel]) return;
+
+        switch (p.messageType) {
+            case "noteoff":
+            case "noteon":
+            case "keypressure":
+                break;
+            case "controlchange":
+                //if (!this.filters.sysex) return;
+            case "channelmodechange":
+            case "programchange":
+            case "channelpressure":
+            case "pitchbendchange":
+                break;
+            default:
+                if (msg.data[0] === 0xF8) {
+                    // m.sysex = true;
+                    // m.type = "timing clock";
+                    if (!this.filters.realtime) return;
+                } else if (msg.data[0] === 0xFA) {
+                    // m.sysex = true;
+                    // m.type = "start clock";
+                    if (!this.filters.realtime) return;
+                } else if (msg.data[0] === 0xFB) {
+                    // m.sysex = true;
+                    // m.type = "continue clock";
+                    if (!this.filters.realtime) return;
+                } else if (msg.data[0] === 0xFC) {
+                    // m.sysex = true;
+                    // m.type = "stop clock";
+                    if (!this.filters.realtime) return;
+                } else if (msg.data[0] === 0xFE) {
+                    // m.sysex = true;
+                    // m.type = "active sensing";
+                } else if (msg.data[0] === 0xFF) {
+                    // m.sysex = true;
+                    // m.type = "system reset";
+                    if (!this.filters.sysex) return;
+                } else if (msg.data[0] === 0xF0 && msg.data[msg.data.length-1] === 0xF7) {
+                    // m.sysex = true;
+                    if (!this.filters.sysex) return;
+                    // if (m.data[1] === 0x7E && m.data[2] === 0x00 && m.data[3] === 0x06) {
+                    //     m.type = "ID resp.";
+                    // } else {
+                    //     m.type = "SysEx";
+                    // }
+                } else {
+                    // m.type = "unknown";
+                }
+                break;
+        }
+
 
         if (this.midi.inputs[msg.target.id]) {
             this.midi.inputs[msg.target.id].nb_messages++;
@@ -151,7 +222,7 @@ class AppState {
         m.info = '';
         // m.info = hs(m.data);
 
-        const p = parseMidi(msg.data);
+//        const p = parseMidi(msg.data);
 
         // if (global.dev) console.log("appendMessageIn", p);
 
@@ -318,6 +389,7 @@ class AppState {
 // https://mobx.js.org/best/decorators.html
 decorate(AppState, {
     midi: observable,
+    filters: observable,
     octaveMiddleC: observable,
     messages: observable,
     queue_size: observable
