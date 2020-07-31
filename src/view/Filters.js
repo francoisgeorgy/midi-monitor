@@ -10,49 +10,66 @@ class Filters extends React.Component {
         const F = this.props.appState.show;
 
         return (
-            <Fragment>
-                <div className="filters">
-                    <div>
-                        Show Hide filters
-                    </div>
-                    <div className="title">
+            <div className="filters">
+
+                <div className="filters-toggle" onClick={() => this.props.appState.toggleShowFilters()}>
+                    {this.props.appState.showFilters ? 'hide' : 'show'} filters
+                </div>
+
+                {this.props.appState.showFilters &&
+                <Fragment>
+                    <div className="title first">
                         Columns:
                     </div>
                     <div className="filters-grid">
-                        <div>
+                        {/*<div>*/}
                             <label>
                                 <input type="checkbox" checked={F.time} onChange={() => this.props.appState.toggleShowOption('time')} />Time
                             </label>
-                        </div>
-                        <div>
+                        {/*</div>*/}
+                        {/*<div>*/}
                             <label>
                                 <input type="checkbox" checked={F.source} onChange={() => this.props.appState.toggleShowOption('source')} />Source
                             </label>
-                        </div>
+                        {/*</div>*/}
                         <div>
                             Data
                             <input type="checkbox" checked={F.dataHex} onChange={() => this.props.appState.toggleShowOption('dataHex')} />hex
                             <input type="checkbox" checked={F.dataDec} onChange={() => this.props.appState.toggleShowOption('dataDec')} />dec
                         </div>
                     </div>
+
                     <div className="title">
-                        Messages:
+                        Channel messages:
                     </div>
                     <div className="filters-grid">
-                        <div>
-                            <label>
-                                <input type="checkbox" checked={F.realtime} onChange={() => this.props.appState.toggleShowOption('realtime')} />Real-time
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                <input type="checkbox" checked={F.sysex} onChange={() => this.props.appState.toggleShowOption('sysex')} />System exclusive
-                            </label>
-                        </div>
-                        <Channels />
+                        <label>
+                            <input type="checkbox" checked={F.voice} onChange={() => this.props.appState.toggleShowOption('voice')} />Voice
+                        </label>
+                        <label>
+                            <input type="checkbox" checked={F.mode} onChange={() => this.props.appState.toggleShowOption('mode')} />Mode
+                        </label>
                     </div>
-                </div>
-            </Fragment>
+
+                    <div className="title">
+                        System messages:
+                    </div>
+                    <div className="filters-grid">
+                        <label>
+                            <input type="checkbox" checked={F.sysex} onChange={() => this.props.appState.toggleShowOption('sysex')} />System Exclusive
+                        </label>
+                        <label>
+                            <input type="checkbox" checked={F.common} onChange={() => this.props.appState.toggleShowOption('common')} />System Common
+                        </label>
+                        <label>
+                            <input type="checkbox" checked={F.realtime} onChange={() => this.props.appState.toggleShowOption('realtime')} />Real Time
+                        </label>
+                    </div>
+
+                    <Channels />
+                </Fragment>}
+
+            </div>
         );
     }
 }

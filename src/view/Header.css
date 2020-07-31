@@ -19,6 +19,12 @@
     padding: 10px;
 }
 
+.keep-last,
+.middlec-selector,
+.pitchbend-selector {
+    margin-right: 20px;
+}
+
 /*
 .header-app-name {
     font-family: "Roboto Condensed", "Roboto", Helvetica, Arial, sans-serif;
@@ -64,9 +70,6 @@
     font-weight: bold;
 }
 
-.keep-last {
-    margin-right: 20px;
-}
 
 .spacer {
     flex-grow: 10;

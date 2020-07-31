@@ -59,7 +59,7 @@ export var fromHexString = function(string, sep) {
     let s = sep ? string.replace(sep, '') : string;
     if ((s.length % 2) > 0) {
         // TODO: throw an exception
-        console.warn(`fromHexString: invalid hex string: ${s}`);
+        if (global.dev) console.warn(`fromHexString: invalid hex string: ${s}`);
         return null;
     }
     let a = new Uint8Array(s.length / 2);

@@ -132,6 +132,9 @@ class Messages extends React.Component {
                     {S.show.dataDec && <td className="data" dangerouslySetInnerHTML={{__html: m.raw_dec}}/>}
                     <td className="midi-ch">{m.channel}</td>
                     <td className="data">{m.info}</td>
+
+                    {/*TODO: sysex: in column info, add link to download sysex as file */}
+
                     {/*<td className="data data-note">{m.info_note}</td>*/}
                     {/*<td className="data data-cc">{m.info_cc}</td>*/}
                     {/*<td className="data data-info">{m.info}</td>*/}

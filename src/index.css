@@ -50,3 +50,7 @@ body.popup {
   -o-user-select: none;
   user-select: none;
 }
+
+label {
+  cursor: pointer;
+}

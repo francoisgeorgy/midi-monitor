@@ -19,19 +19,30 @@ class AppState {
     //     sysex: true,
     //     channels: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true]
     // };
+    bendRange = DEFAULT_PREFERENCES.bendRange;
+    showFilters = DEFAULT_PREFERENCES.showFilters;
     show = DEFAULT_PREFERENCES.show;
     octaveMiddleC = DEFAULT_PREFERENCES.octaveMiddleC;
     queue_size = DEFAULT_PREFERENCES.queue_size;
+
 
     messages = [];  // messages ready for displaying, and filtering
 
     constructor() {
         // console.log("AppState constructor", this.octaveMiddleC);
         const p = loadPreferences();
+        // console.log("AppState constructor", p);
+        this.bendRange = p.bendRange;
+        this.showFilters = p.showFilters;
         this.show = p.show;
         this.octaveMiddleC = p.octaveMiddleC;
         this.queue_size = p.queue_size;
         // console.log("AppState constructor, preferences=", this.octaveMiddleC, p);
+    }
+
+    toggleShowFilters() {
+        this.showFilters = !this.showFilters;
+        savePreferences({showFilters: this.showFilters});
     }
 
     setQueueSize(size) {
@@ -41,8 +52,15 @@ class AppState {
     }
 
     setOctaveMiddleC(octave) {
+        if (isNaN(octave)) return;
         this.octaveMiddleC = octave;
         savePreferences({octaveMiddleC: octave});
+    }
+
+    setBendRange(semitones) {
+        if (isNaN(semitones)) return;
+        this.bendRange = semitones;
+        savePreferences({bendRange: semitones});
     }
 
     toggleShowOption(key) {
@@ -174,43 +192,47 @@ class AppState {
         if (!this.show.channels[p.channel - 1]) return;
 
         switch (p.messageType) {
+
             case "noteoff":
             case "noteon":
             case "keypressure":
-                break;
             case "controlchange":
-                //if (!this.filters.sysex) return;
-            case "channelmodechange":
             case "programchange":
             case "channelpressure":
             case "pitchbendchange":
+                if (!this.show.voice) return;
                 break;
+
+            case "channelmodechange":
+                if (!this.show.mode) return;
+                break;
+
             default:
-                if (msg.data[0] === 0xF8) {
-                    // m.sysex = true;
-                    // m.type = "timing clock";
+                if (msg.data[0] === 0xF1) {             // MIDI Time Code Quarter Frame
+                    if (!this.show.common) return;
+                } else if (msg.data[0] === 0xF2) {      // Song Position Pointer
+                    if (!this.show.common) return;
+                } else if (msg.data[0] === 0xF3) {      // Song Select
+                    if (!this.show.common) return;
+                } else if (msg.data[0] === 0xF6) {      // Tune Request
+                    if (!this.show.common) return;
+                } else if (msg.data[0] === 0xF7) {      // End of System Exclusive  // TODO: special treatment?
+                    if (!this.show.common) return;
+                } else if (msg.data[0] === 0xF8) {      // timing clock
                     if (!this.show.realtime) return;
-                } else if (msg.data[0] === 0xFA) {
-                    // m.sysex = true;
-                    // m.type = "start clock";
+
+                } else if (msg.data[0] === 0xFA) {      // start
                     if (!this.show.realtime) return;
-                } else if (msg.data[0] === 0xFB) {
-                    // m.sysex = true;
-                    // m.type = "continue clock";
+                } else if (msg.data[0] === 0xFB) {      // continue
                     if (!this.show.realtime) return;
-                } else if (msg.data[0] === 0xFC) {
-                    // m.sysex = true;
-                    // m.type = "stop clock";
+                } else if (msg.data[0] === 0xFC) {      // stop
                     if (!this.show.realtime) return;
-                } else if (msg.data[0] === 0xFE) {
-                    // m.sysex = true;
-                    // m.type = "active sensing";
-                } else if (msg.data[0] === 0xFF) {
-                    // m.sysex = true;
-                    // m.type = "system reset";
-                    if (!this.show.sysex) return;
+                } else if (msg.data[0] === 0xFE) {      // active sensing
+                    if (!this.show.realtime) return;
+                } else if (msg.data[0] === 0xFF) {      // system reset
+                    if (!this.show.realtime) return;
+
                 } else if (msg.data[0] === 0xF0 && msg.data[msg.data.length-1] === 0xF7) {
-                    // m.sysex = true;
                     if (!this.show.sysex) return;
                     // if (m.data[1] === 0x7E && m.data[2] === 0x00 && m.data[3] === 0x06) {
                     //     m.type = "ID resp.";
@@ -218,7 +240,7 @@ class AppState {
                     //     m.type = "SysEx";
                     // }
                 } else {
-                    // m.type = "unknown";
+                    // m.type = "unknown";      // TODO
                 }
                 break;
         }
@@ -288,8 +310,9 @@ class AppState {
                 // m.data1 = `${p.controlNumber} ${p.controlFunction || ''}`;
                 // m.data1 = `${p.controlNumber}`;
                 // m.data2 = p.controlValue === 0 ? '0' : (p.controlValue || '');
+                const ccpc = (100 * p.controlValue / 127).toFixed(0).padStart(4, ' ')
                 const cc = `#${p.controlNumber}`
-                m.info = `CC${cc.padStart(4)}  value ${(p.controlValue || 0).toString().padStart(3)}`;
+                m.info = `CC${cc.padStart(4)}  value ${(p.controlValue || 0).toString().padStart(3)}  ${ccpc}%`;
                 // m.info = `CC${cc.padStart(4)}  value ${p.controlValue || 0}`;
                 break;
             case "channelmodechange":
@@ -311,7 +334,12 @@ class AppState {
                 m.info = `Channel Pressure ${p.pressure}`;
                 break;
             case "pitchbendchange":
-                m.info =  `Pitch Bend ${p.pitchBend.toString().padStart(6, ' ')}  ${p.pitchBendMultiplier.toFixed(2).padStart(5, ' ')}`;
+
+                // const pc = (100 * p.pitchBendMultiplier).toFixed(2).padStart(7, ' ')
+                const pc = (100 * p.pitchBendMultiplier).toFixed(0).padStart(4, ' ')
+                const semi = (this.bendRange * p.pitchBendMultiplier).toFixed(2).padStart(6, ' ');
+
+                m.info =  `Pitch Bend ${p.pitchBend.toString().padStart(6, ' ')}  ${pc}%  ${semi} semitones`;
                 // m.data1 = p.pitchBend;
                 // m.data2 = p.pitchBendMultiplier;
                 // m.info = `${m.data1.toString().padStart(6, ' ')}   ${m.data2.toFixed(2).padStart(5, ' ')}`;
@@ -425,8 +453,10 @@ class AppState {
 // https://mobx.js.org/best/decorators.html
 decorate(AppState, {
     midi: observable,
+    showFilters: observable,
     show: observable,
     octaveMiddleC: observable,
+    bendRange: observable,
     messages: observable,
     queue_size: observable
     // device_ok: observable,
