@@ -9,7 +9,7 @@ class Channels extends React.Component {
         const F = this.props.appState.show;
 
         return (
-            <div>
+            <div className="channels-wrapper">
                 <div className="channels-toggles">
                     <div className="title">Channels:</div>
                     <div className="toggle" onClick={() => this.props.appState.selectAllChannels()}>all</div>
