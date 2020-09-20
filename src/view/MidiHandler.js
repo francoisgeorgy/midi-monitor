@@ -31,6 +31,7 @@ class MidiHandler extends React.Component {
             // we ignore Timing Clock messages
             return;
         }
+        console.log(e);
         // e.data is UInt8Array
         const S = this.props.appState;
         S.appendMessageIn(e);

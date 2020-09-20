@@ -220,7 +220,6 @@ class AppState {
                     if (!this.show.common) return;
                 } else if (msg.data[0] === 0xF8) {      // timing clock
                     if (!this.show.realtime) return;
-
                 } else if (msg.data[0] === 0xFA) {      // start
                     if (!this.show.realtime) return;
                 } else if (msg.data[0] === 0xFB) {      // continue
@@ -353,37 +352,61 @@ class AppState {
 
                 if (m.data[0] === 0xF8) {
                     m.sysex = true;
-                    m.type = "timing clock";
+                    m.info = "Clock beat";
                     m.data1 = '';
                     m.data2 = '';
                     m.channel = '';
+                } else if (m.data[0] === 0xF2) {
+                    m.sysex = true;
+                    m.info = "Song Position Pointer";
+                    m.data1 = '';
+                    m.data2 = '';
+                    m.channel = '';
+                } else if (m.data[0] === 0xF3) {
+                    m.sysex = true;
+                    m.info = "Song Select";
+                    m.data1 = '';
+                    m.data2 = '';
+                    m.channel = '';
+                } else if (m.data[0] === 0xF6) {
+                    m.sysex = true;
+                    m.info = "Tune Request";
+                    m.data1 = '';
+                    m.data2 = '';
+                    m.channel = '';
+                // } else if (m.data[0] === 0xF7) {
+                //     m.sysex = true;
+                //     m.info = "End of System Exclusive";
+                //     m.data1 = '';
+                //     m.data2 = '';
+                //     m.channel = '';
                 } else if (m.data[0] === 0xFA) {
                     m.sysex = true;
-                    m.type = "start clock";
+                    m.info = "Clock Start";
                     m.data1 = '';
                     m.data2 = '';
                     m.channel = '';
                 } else if (m.data[0] === 0xFB) {
                     m.sysex = true;
-                    m.type = "continue clock";
+                    m.info = "Clock Continue";
                     m.data1 = '';
                     m.data2 = '';
                     m.channel = '';
                 } else if (m.data[0] === 0xFC) {
                     m.sysex = true;
-                    m.type = "stop clock";
+                    m.info = "Clock Stop";
                     m.data1 = '';
                     m.data2 = '';
                     m.channel = '';
                 } else if (m.data[0] === 0xFE) {
                     m.sysex = true;
-                    m.type = "active sensing";
+                    m.info = "Active Sensing";
                     m.data1 = '';
                     m.data2 = '';
                     m.channel = '';
                 } else if (m.data[0] === 0xFF) {
                     m.sysex = true;
-                    m.type = "system reset";
+                    m.info = "System Reset";
                     m.data1 = '';
                     m.data2 = '';
                     m.channel = '';
@@ -392,15 +415,15 @@ class AppState {
                     // F0 7E 00 06 01 F7
                     // F0 7E 00 06 02 00 02 17 0B 0B 00 00 00 0B F7
                     if (m.data[1] === 0x7E && m.data[2] === 0x00 && m.data[3] === 0x06) {
-                        m.type = "ID resp.";
+                        m.info = "ID resp.";
                     } else {
-                        m.type = "SysEx";
+                        m.info = "SysEx";
                     }
                     m.data1 = '';
                     m.data2 = '';
                     m.channel = '';
                 } else {
-                    m.type = "unknown";
+                    m.info = "unknown";
                     m.data1 = p.data1;
                     m.data2 = p.data2;
                 }
