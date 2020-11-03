@@ -6,6 +6,7 @@ import Header from "./view/Header";
 import Messages from "./view/Messages";
 import './App.css';
 import Filters from "./view/Filters";
+import {MidiSupportWarning} from "./view/MidiSupportWarning";
 
 class App extends Component {
 
@@ -14,6 +15,7 @@ class App extends Component {
         return (
             <Provider appState={appState}>
                 <Fragment>
+                    <MidiSupportWarning />
                     <Header />
                     <div className="app">
                         <div className="left">

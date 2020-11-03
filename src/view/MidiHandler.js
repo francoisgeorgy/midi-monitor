@@ -31,7 +31,6 @@ class MidiHandler extends React.Component {
             // we ignore Timing Clock messages
             return;
         }
-        console.log(e);
         // e.data is UInt8Array
         const S = this.props.appState;
         S.appendMessageIn(e);
@@ -214,7 +213,7 @@ class MidiHandler extends React.Component {
         if (this.state.error) {
             switch (this.state.error.code) {
                 case ERROR_MIDI_NOT_SUPPORTED :
-                    error_message = 'Your browser does not support Web MIDI. We recommend Chrome browser.';
+                    // error_message = 'Your browser does not support Web MIDI. We recommend Chrome browser.';
                     break;
                 case ERROR_MIDI_NOT_ENABLED :
                     error_message = "You need to enable the access to MIDI devices in your browser. See Help for instructions.";
